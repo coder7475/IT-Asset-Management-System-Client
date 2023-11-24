@@ -1,5 +1,5 @@
 import GeneralNavbar from "../../components/General/GeneralNavbar";
-// import { usehtmlFormik } from "htmlFormik";
+import { useFormik } from "formik";
 import Select from 'react-select';
 const options = [
   { value: {price: 5, members: 5}, label: 'Maximum 5 employees: $5' },
@@ -8,24 +8,25 @@ const options = [
 ];
 
 const AdminSignUp = () => {
-  // const Formik = usehtmlFormik({
-  //   initialValues: {
-  //     fullName: "",
-  //     lastName: "",
-  //     email: "",
-  //   },
+  const formik = useFormik({
+    initialValues: {
+      fullName: "",
+      lastName: "",
+      email: "",
+    },
 
-  //   onSubmit: (values) => {
-  //     alert(JSON.stringify(values, null, 2));
-  //   },
-  // });
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <main>
       <GeneralNavbar />
-      <div className="mt-10 flex flex-col w-1/3 mx-auto gap-2 min-h-screen">
-        <h1 className="text-3xl font-bold">Sign Up As a admin</h1>
+      <div className="mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
+        <h1 className="text-xl md:text-3xl font-medium md:font-bold">Sign Up As a admin</h1>
         <p className="font-light text-lg ">Enter Your Deatils </p>
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={formik.handleSubmit}>
           <label htmlFor="adminName" className="font-sans font-medium mt-1">
             Full Name
           </label>
@@ -62,6 +63,8 @@ const AdminSignUp = () => {
             Email
           </label>
           <input
+            onChange={formik.handleChange}
+            value={formik.values.email}
             type="text"
             name="email"
             id="email"
@@ -92,7 +95,8 @@ const AdminSignUp = () => {
           <label htmlFor="datetime" className="font-sans font-medium mt-2">
             Select a Package
           </label>
-          <Select options={options} className="border-2 rounded-lg border-blue-500 mb-16"/>
+          <Select options={options} className="border-2 rounded-lg border-blue-500 mb-5"/>
+          <button type="submit" className=" bg-blue-500 text-white font-semibold py-2 rounded-xl">Submit</button>
         </form>
       </div>
     </main>
