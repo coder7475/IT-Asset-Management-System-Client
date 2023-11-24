@@ -1,9 +1,10 @@
+import { Outlet } from "react-router-dom";
 
 const GeneralLayout = () => {
   return (
-    <div className="text-5xl">
-        Hello SLUIF
-    </div>
+    <main>
+        <Outlet />
+    </main>
   );
 };
 
