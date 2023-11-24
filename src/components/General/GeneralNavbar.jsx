@@ -99,7 +99,7 @@ function GeneralNavbar() {
             >
               {pages.map((page, idx) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <NavLink to={reference[idx]} key={page}>
+                  <NavLink to={reference[idx]}>
                     <Typography textAlign="center">{page}</Typography>
                   </NavLink>
                 </MenuItem>
@@ -111,8 +111,8 @@ function GeneralNavbar() {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
+              component="div"
+              // href="#app-bar-with-responsive-menu"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
