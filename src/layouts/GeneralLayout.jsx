@@ -2,7 +2,7 @@
 const GeneralLayout = () => {
   return (
     <div>
-        Hello ITAM      
+        Hello SLUIF
     </div>
   );
 };
