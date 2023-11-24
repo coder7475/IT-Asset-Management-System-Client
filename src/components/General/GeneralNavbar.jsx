@@ -17,7 +17,7 @@ import "./../../index.css";
 import compImg from "./../../assets/company.svg";
 const pages = ["Home", "Join as an Employee", "Join as HR/admin"];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const reference = ["/", "/joinEmployee", "joinAdmin"];
+const reference = ["/", "/joinEmployee", "/joinAdmin"];
 
 function GeneralNavbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -178,4 +178,5 @@ function GeneralNavbar() {
     </AppBar>
   );
 }
+
 export default GeneralNavbar;
