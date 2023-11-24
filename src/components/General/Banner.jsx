@@ -29,30 +29,30 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="flex h-[600px] justify-center items-center flex-col">
+          <div className="flex h-[400px] md:h-[500px] lg:h-[600px] xl:h-[850px] justify-center items-center flex-col">
             <div className="w-full h-full bg-[url('https://i.ibb.co/nPxZCKS/join-Employee.jpg')] bg-cover bg-center">
               <div className="w-full h-full flex  justify-center items-center backdrop-brightness-50 flex-col gap-4 text-white text-xl">
-                <h1 className="font-bold"> Unlock Your Potential</h1>
-                <p className="w-1/2 font-light text-lg">
+                <h1 className="font-medium text-center md:font-bold"> Unlock Your Potential</h1>
+                <p className="w-1/2 font-light text-sm md:text-lg">
                 Join Your Comapany Team. Embrace Innovation, Drive Efficiency, and Thrive in a Dynamic Work Environment. 
                 </p>
                 <NavLink to="/joinEmployee">
-                  <Button variant="contained">Join As an Employee</Button>
+                  <Button size="small" variant="contained">Join As an Employee</Button>
                 </NavLink>
               </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-        <div className="flex h-[600px] justify-center items-center flex-col">
+        <div className="flex h-[400px] md:h-[500px] lg:h-[600px] xl:h-[850px] justify-center items-center flex-col">
             <div className="w-full h-full bg-[url('https://i.ibb.co/B61LKzM/join-As-Admin.jpg')] bg-cover bg-center">
               <div className="w-full h-full flex  justify-center items-center backdrop-brightness-50 flex-col gap-4 text-white text-xl">
-                <h1 className="font-bold"> Elevate Your Administration Skills</h1>
-                <p className="w-2/3 font-light text-lg">
-                Elevate Your Administration Skills: Join Us to Spearhead Company Creation and Management with Our Cutting-Edge Service! Empower Businesses to Thrive Your Expertise, Our Platform. Be the Architect of Success! Join Our Team and Shape the Future of Company Creation and Management Services. 
+                <h1 className="font-medium text-center md:font-bold"> Elevate Your Administration Skills</h1>
+                <p className="w-1/2 font-light text-sm md:text-lg">
+                Join Us to Spearhead Company Creation and Management with Our Cutting-Edge Service!  
                 </p>
                 <NavLink to="/joinAdmin">
-                  <Button variant="contained">Join As an HR/Admin</Button>
+                  <Button variant="contained" size="small">Join As an HR/Admin</Button>
                 </NavLink>
               </div>
             </div>
