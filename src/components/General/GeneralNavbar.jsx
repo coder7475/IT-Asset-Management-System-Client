@@ -12,9 +12,12 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
-
+import { NavLink } from "react-router-dom";
+import "./../../index.css";
+import compImg from "./../../assets/company.svg";
 const pages = ["Home", "Join as an Employee", "Join as HR/admin"];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const reference = ["/", "/joinEmployee", "joinAdmin"];
 
 function GeneralNavbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -39,23 +42,24 @@ function GeneralNavbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+          <img src={compImg} alt="" width="50px" height="50px" className="mr-2"/>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
-              mr: 2,
+              mr: 4,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              // letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            LOGO
+            AssetIT
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -85,12 +89,11 @@ function GeneralNavbar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
-                
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu} >
-                  <Typography textAlign="center" >{page}</Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -115,21 +118,32 @@ function GeneralNavbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block", marginRight: 3  }}
-              >
-                {page}
-              </Button>
+            {pages.map((page, idx) => (
+              <NavLink to={reference[idx]} key={page}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    marginRight: 3,
+                  }}
+                >
+                  {page}
+                </Button>
+              </NavLink>
             ))}
           </Box>
-          <Button variant="primary" sx={
-            {
-              backgroundColor: "navy"
-            }
-          }>Login</Button>
+          <NavLink to="/login">
+            <Button
+              variant="primary"
+              sx={{
+                backgroundColor: "navy",
+              }}
+            >
+              Login
+            </Button>
+          </NavLink>
           {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
