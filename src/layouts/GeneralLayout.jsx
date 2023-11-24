@@ -1,7 +1,7 @@
 
 const GeneralLayout = () => {
   return (
-    <div>
+    <div className="text-5xl">
         Hello SLUIF
     </div>
   );
