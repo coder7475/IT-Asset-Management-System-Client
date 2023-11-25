@@ -1,6 +1,7 @@
 import useAuth from "../../hooks/useAuth";
 import usePublicAxios from "../../hooks/usePublicAxios";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -8,21 +9,35 @@ const SocialLogin = () => {
   const navigate = useNavigate();
 
   const handleSocialLogin = () => {
-    googleSignIn().then((result) => {
+    googleSignIn().then(async (result) => {
       // console.log(result);
       // TODO: Use sweet alert input type date for signin birthdate
-
+      const { value: date } = await Swal.fire({
+        title: "select birthday date",
+        input: "date",
+        inputLabel: "Your Birthdate",
+      });
+      // console.log(date);
       // prompt("Please enter your name");
       // TODO: Create the user obj and send it to databse to store in users collection if the user does not exits
       const userInfo = {
-        email: result.user?.email,
         name: result.user?.displayName,
+        email: result.user?.email,
+        birthday: date
       };
-      console.log(userInfo);
-      publicAxios.post("/users", userInfo).then((res) => {
-        console.log(res.data);
+      // console.log(userInfo);
+      publicAxios.post("/users", userInfo).then(() => {
+        // console.log(res.data);
+
       });
-      navigate("/dashboard");
+
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Successful Sign In!",
+      });
+
+      navigate("/");
     });
   };
 
