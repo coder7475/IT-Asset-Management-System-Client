@@ -3,6 +3,7 @@ import GeneralLayout from '../layouts/GeneralLayout';
 import ErrorPage from '../pages/ErrorPage';
 import Homepage from '../pages/General/Homepage';
 import AdminSignUp from '../pages/General/AdminSignUp';
+import EmployeeSignUp from '../pages/General/EmployeeSignUp';
 
 const router = Router([
   {
@@ -17,6 +18,10 @@ const router = Router([
       {
         path: "/joinAdmin",
         element: <AdminSignUp/>
+      },
+      {
+        path: "/joinEmployee",
+        element: <EmployeeSignUp/>
       }
     ]
   }

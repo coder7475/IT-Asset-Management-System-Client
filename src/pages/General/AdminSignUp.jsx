@@ -11,7 +11,7 @@ const options = [
 
 const AdminSignUp = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-  console.log(selectedOption);  
+  // console.log(selectedOption);  
   const formik = useFormik({
     initialValues: {
       adminName: "",
