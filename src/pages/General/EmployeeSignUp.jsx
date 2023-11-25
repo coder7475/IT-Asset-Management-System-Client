@@ -1,6 +1,7 @@
-
+import Divider from '@mui/material/Divider';
 import GeneralNavbar from '../../components/General/GeneralNavbar';
 import { useFormik } from "formik";
+import SocialLogin from '../../components/General/SocialLogin';
 
 const EmployeeSignUp = () => {
   const formik = useFormik({
@@ -19,11 +20,13 @@ const EmployeeSignUp = () => {
   return (
     <main>
       <GeneralNavbar />
-      <div className="mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
-        <h1 className="text-xl md:text-3xl font-medium md:font-bold">
+      <div className=" mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
+        
+        <h1 className=" text-xl md:text-3xl font-medium md:font-bold">
           Sign Up As a employee
         </h1>
         <p className="font-light text-lg ">Enter Your Deatils </p>
+
         <form className="flex flex-col" onSubmit={formik.handleSubmit}>
           <label htmlFor="employeeName" className="font-sans font-medium mt-1">
             Full Name
@@ -83,6 +86,9 @@ const EmployeeSignUp = () => {
             Submit
           </button>
         </form>
+        <Divider>Or</Divider>
+        <SocialLogin/>
+
       </div>
     </main>
   );
