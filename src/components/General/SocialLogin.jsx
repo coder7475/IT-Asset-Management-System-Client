@@ -1,9 +1,11 @@
 import useAuth from "../../hooks/useAuth";
 import usePublicAxios from "../../hooks/usePublicAxios";
+import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
   const publicAxios = usePublicAxios();
+  const navigate = useNavigate();
 
   const handleSocialLogin = () => {
     googleSignIn().then((result) => {
@@ -20,6 +22,7 @@ const SocialLogin = () => {
       publicAxios.post("/users", userInfo).then((res) => {
         console.log(res.data);
       });
+      navigate("/dashboard");
     });
   };
 
