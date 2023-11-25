@@ -1,17 +1,27 @@
-import useAuth from '../../hooks/useAuth';
+import useAuth from "../../hooks/useAuth";
+import usePublicAxios from "../../hooks/usePublicAxios";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
+  const publicAxios = usePublicAxios();
 
   const handleSocialLogin = () => {
-    googleSignIn()
-      .then((result) => {
-        console.log(result);
-        // TODO: Use sweet alert input type date for signin birthdate
-        // prompt("Please enter your name");
-        // TODO: Create the user obj and send it to databse to store in users collection if the user does not exits
-      })
-  }
+    googleSignIn().then((result) => {
+      // console.log(result);
+      // TODO: Use sweet alert input type date for signin birthdate
+
+      // prompt("Please enter your name");
+      // TODO: Create the user obj and send it to databse to store in users collection if the user does not exits
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      };
+      console.log(userInfo);
+      publicAxios.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+      });
+    });
+  };
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -36,7 +46,7 @@ const SocialLogin = () => {
         </svg>
         Sign in with Facebook
       </button> */}
-     
+
       {/* <button
         type="button"
         className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
@@ -80,9 +90,6 @@ const SocialLogin = () => {
         </svg>
         Sign in with Google
       </button>
-      
-
-   
     </div>
   );
 };
