@@ -1,7 +1,8 @@
 import GeneralNavbar from "../../components/General/GeneralNavbar";
 import { useFormik } from "formik";
 import Select from "react-select";
-import { useState } from 'react';
+import { useState } from "react";
+import usePublicAxios from "../../hooks/usePublicAxios";
 
 const options = [
   { value: { price: 5, members: 5 }, label: "Maximum 5 employees: $5" },
@@ -9,26 +10,45 @@ const options = [
   { value: { price: 15, members: 20 }, label: "Maximum 20 employees: $15" },
 ];
 
+const imgHostingKey = import.meta.env.VITE_IMGBB_KEY;
+const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
+
 const AdminSignUp = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-  // console.log(selectedOption);  
+  const publicAxios = usePublicAxios();
+  const [image, setImage] = useState('');
+  console.log(image);
+  console.log(selectedOption);
+
   const formik = useFormik({
     initialValues: {
       adminName: "",
       companyName: "",
       email: "",
-      companyLogo: "",
+      // companyLogo: "",
       password: "",
       date: "",
     },
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
 
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
+  };
+
+  const handleImage = async (img) => {
+    console.log(img);
+    const imageFile = { image: img };
+    const res = await publicAxios.post(imageHostingApi, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    // console.log(res);
+    setImage(res.data.data.display_url);
   };
 
   return (
@@ -71,8 +91,10 @@ const AdminSignUp = () => {
           </label>
           <input
             type="file"
-            onChange={formik.handleChange}
-            value={formik.values.companyLogo}
+            onChange={(event) => {
+              handleImage(event.currentTarget.files[0]);
+            }}
+            // value={formik.values.companyLogo}
             name="companyLogo"
             id="companyLogo"
             className="border-2 rounded-lg border-blue-500"

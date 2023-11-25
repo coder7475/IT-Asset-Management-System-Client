@@ -8,7 +8,7 @@ import usePublicAxios from "../../hooks/usePublicAxios";
 import { useNavigate } from "react-router-dom";
 
 const EmployeeSignUp = () => {
-  const { createUser } = useAuth();
+  const { createUser, logOut } = useAuth();
   const publicAxios = usePublicAxios();
   const navigate = useNavigate();
 
@@ -21,8 +21,8 @@ const EmployeeSignUp = () => {
     },
 
     onSubmit: (values) => {
-      console.log(values);
-      const re = /(?=.*[A-Z])(?=.*[\W_]).{6,}/g;
+      // console.log(values);
+      const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g;
       const valid = re.test(values.password);
       // console.log(valid);
       if (!valid) {
@@ -30,34 +30,32 @@ const EmployeeSignUp = () => {
           icon: "error",
           title: "Oops...",
           text: "Invalid Password!",
-          footer:
-            "Make sure the password is atleast 6 character long, have atleast one capital letter, one numeric letter and one special character",
+          footer: "Minimum six characters, at least one letter and one number"
+        });
+      } else {
+        createUser(values.email, values.password).then((result) => {
+          console.log(result);
+          // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
+          const userInfo = {
+            name: values.employeeName,
+            email: values.email,
+            birthday: values.date,
+          };
+          console.log(userInfo);
+          console.log(userInfo);
+          publicAxios.post("/users", userInfo).then(() => {
+            // console.log(res.data);
+          });
+
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successful Sign In!",
+          });
+          logOut();
+          navigate("/");
         });
       }
-
-      createUser(values.email, values.password)
-      .then((result) => {
-        console.log(result);
-        // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
-        const userInfo = {
-          name: values.employeeName,
-          email: values.email,
-          birthday: values.date,
-        };
-        console.log(userInfo);
-        console.log(userInfo);
-        publicAxios.post("/users", userInfo).then(() => {
-          // console.log(res.data);
-        });
-
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Successful Sign In!",
-        });
-  
-        navigate("/");
-      });
     },
   });
   return (
