@@ -5,9 +5,8 @@ const SocialLogin = () => {
 
   const handleSocialLogin = () => {
     googleSignIn()
-      .then(() => {
-
-        // console.log(result);
+      .then((result) => {
+        console.log(result);
         // TODO: Use sweet alert input type date for signin birthdate
         // prompt("Please enter your name");
         // TODO: Create the user obj and send it to databse to store in users collection if the user does not exits
