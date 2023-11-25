@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
-  const { googleSignIn } = useAuth();
+  const { googleSignIn, logOut } = useAuth();
   const publicAxios = usePublicAxios();
   const navigate = useNavigate();
-
+  // console.log(user);
   const handleSocialLogin = () => {
     googleSignIn().then(async (result) => {
       // console.log(result);
@@ -31,12 +31,13 @@ const SocialLogin = () => {
 
       });
 
+
       Swal.fire({
         icon: "success",
         title: "Success",
         text: "Successful Sign In!",
       });
-
+      logOut();
       navigate("/");
     });
   };

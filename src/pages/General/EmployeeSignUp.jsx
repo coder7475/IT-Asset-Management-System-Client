@@ -1,9 +1,17 @@
-import Divider from '@mui/material/Divider';
-import GeneralNavbar from '../../components/General/GeneralNavbar';
+import Divider from "@mui/material/Divider";
+import GeneralNavbar from "../../components/General/GeneralNavbar";
 import { useFormik } from "formik";
-import SocialLogin from '../../components/General/SocialLogin';
+import SocialLogin from "../../components/General/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import usePublicAxios from "../../hooks/usePublicAxios";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeSignUp = () => {
+  const { createUser } = useAuth();
+  const publicAxios = usePublicAxios();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       employeeName: "",
@@ -14,13 +22,48 @@ const EmployeeSignUp = () => {
 
     onSubmit: (values) => {
       console.log(values);
+      const re = /(?=.*[A-Z])(?=.*[\W_]).{6,}/g;
+      const valid = re.test(values.password);
+      // console.log(valid);
+      if (!valid) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid Password!",
+          footer:
+            "Make sure the password is atleast 6 character long, have atleast one capital letter, one numeric letter and one special character",
+        });
+      }
+
+      createUser(values.email, values.password)
+      .then((result) => {
+        console.log(result);
+        // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
+        const userInfo = {
+          name: values.employeeName,
+          email: values.email,
+          birthday: values.date,
+        };
+        console.log(userInfo);
+        console.log(userInfo);
+        publicAxios.post("/users", userInfo).then(() => {
+          // console.log(res.data);
+        });
+
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successful Sign In!",
+        });
+  
+        navigate("/");
+      });
     },
   });
   return (
     <main>
       <GeneralNavbar />
       <div className=" mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
-        
         <h1 className=" text-xl md:text-3xl font-medium md:font-bold">
           Sign Up As a employee
         </h1>
@@ -39,7 +82,6 @@ const EmployeeSignUp = () => {
             className="border-2 rounded-lg border-blue-500"
             placeholder=" Enter Your Full Name"
           />
-
 
           <label htmlFor="email" className="font-sans font-medium mt-2">
             Email
@@ -77,7 +119,7 @@ const EmployeeSignUp = () => {
             id="date"
             className="border-2 rounded-lg border-blue-500"
           />
-          
+
           <button
             type="submit"
             className=" bg-blue-500 text-white font-semibold mt-4 py-2 rounded-xl"
@@ -86,8 +128,7 @@ const EmployeeSignUp = () => {
           </button>
         </form>
         <Divider>Or</Divider>
-        <SocialLogin/>
-
+        <SocialLogin />
       </div>
     </main>
   );
