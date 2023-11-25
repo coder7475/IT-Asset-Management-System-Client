@@ -16,7 +16,6 @@ const EmployeeSignUp = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
   return (
     <main>
       <GeneralNavbar />
