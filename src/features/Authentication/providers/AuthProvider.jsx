@@ -18,8 +18,8 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       if (currentUser) {
         // User is signed in
-        const uid = currentUser.uid;
-        console.log(uid);
+        
+        console.log(currentUser);
         // ...
       } else {
         // User is signed out

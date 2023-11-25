@@ -3,6 +3,17 @@ import useAuth from '../../hooks/useAuth';
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
 
+  const handleSocialLogin = () => {
+    googleSignIn()
+      .then(() => {
+
+        // console.log(result);
+        // TODO: Use sweet alert input type date for signin birthdate
+        // prompt("Please enter your name");
+        // TODO: Create the user obj and send it to databse to store in users collection if the user does not exits
+      })
+  }
+
   return (
     <div className="max-w-2xl mx-auto">
       {/* <button
@@ -51,7 +62,7 @@ const SocialLogin = () => {
       <button
         type="button"
         className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
-        onClick={googleSignIn}
+        onClick={handleSocialLogin}
       >
         <svg
           className="mr-2 -ml-1 w-4 h-4"
