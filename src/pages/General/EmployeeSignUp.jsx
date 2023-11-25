@@ -13,7 +13,7 @@ const EmployeeSignUp = () => {
     },
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
   return (

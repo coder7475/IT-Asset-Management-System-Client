@@ -11,7 +11,7 @@ const SocialLogin = () => {
   const handleSocialLogin = () => {
     googleSignIn().then(async (result) => {
       // console.log(result);
-      // TODO: Use sweet alert input type date for signin birthdate
+      // ?DONE: Use sweet alert input type date for signin birthdate
       const { value: date } = await Swal.fire({
         title: "select birthday date",
         input: "date",
@@ -19,7 +19,7 @@ const SocialLogin = () => {
       });
       // console.log(date);
       // prompt("Please enter your name");
-      // TODO: Create the user obj and send it to databse to store in users collection if the user does not exits
+      // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
       const userInfo = {
         name: result.user?.displayName,
         email: result.user?.email,
