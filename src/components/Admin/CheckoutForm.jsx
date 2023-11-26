@@ -2,21 +2,27 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
-import useSecureAxios from '../../hooks/useSecureAxios';
+import useSecureAxios from "../../hooks/useSecureAxios";
 
 const CheckoutForm = () => {
   const [error, setError] = useState(``);
-  const [clientSecret, setClientSecret] = useState('');
+  const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
+
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   console.log(user);
   const [adminData, isAdminLoading] = useAdmin();
   const axiosSecure = useSecureAxios();
-  // console.log(adminData.user.package);
+  // console.log(adminData?.user?.package);
   const unpaidPackages = adminData?.user?.package.filter(
     (pack) => pack.value.status === "unpaid"
   );
+  // make all packages status paid
+  const updatedPackages = adminData?.user?.package?.map((pack) => pack);
+  updatedPackages.forEach((pack) => (pack.value.status = "paid"));
+  console.log(updatedPackages);
   const totalPrice = unpaidPackages?.reduce(
     (total, item) => total + item.value.price,
     0
@@ -36,8 +42,8 @@ const CheckoutForm = () => {
     }
   }, [axiosSecure, totalPrice]);
   console.log(clientSecret);
-  if( isAdminLoading ) {
-    return <span>Loading...</span>
+  if (isAdminLoading) {
+    return <span>Loading...</span>;
   }
 
   const handleSubmit = async (event) => {
@@ -65,7 +71,36 @@ const CheckoutForm = () => {
       console.log("payment method", paymentMethod);
       setError("");
     }
-    
+
+    // confirm payment
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "anonymous",
+            name: user?.displayName || "anonymous",
+          },
+        },
+      });
+
+    if (confirmError) {
+      console.log("confirm error");
+    } else {
+      // successful payment
+      console.log("payment intent", paymentIntent);
+
+      axiosSecure
+        .patch(`/users/admin/${user.email}`, updatedPackages)
+        .then((res) => {
+          console.log(res);
+        });
+
+      if (paymentIntent.status === "succeeded") {
+        console.log("transaction id", paymentIntent.id);
+        setTransactionId(paymentIntent.id);
+      }
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="text-center">
@@ -94,6 +129,7 @@ const CheckoutForm = () => {
       >
         Pay
       </button>
+      <p className="text-green-400 text-sm font-light">{transactionId}</p>
     </form>
   );
 };
