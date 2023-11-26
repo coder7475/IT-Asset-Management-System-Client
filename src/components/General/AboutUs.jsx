@@ -17,7 +17,7 @@ const AboutUs = () => {
           <img
             // className="object-cover object-center rounded"
             alt="hero"
-            src="https://i.ibb.co/F6v1sH6/aboutUS.jpg"
+            src="src/assets/aboutUs/aboutUS.jpg"
           />
         </div>
       </div>

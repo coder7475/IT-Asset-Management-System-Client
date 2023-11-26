@@ -2,13 +2,13 @@ import useAdmin from '../../hooks/useAdmin';
 import UserNavbar from '../../components/User/UserNavbar';
 
 const Dashboard = () => {
-  const [isAdmin] = useAdmin();
-  console.log(isAdmin);
+  const [adminData] = useAdmin();
+  console.log(adminData);
 
   return <div className="flex">
     <div className="w-64 min-h-screen bg-slate-600 text-white">
       {
-        isAdmin? <ul><li>Admin</li></ul>
+        adminData.admin? <ul><li>Admin</li></ul>
         : 
         <UserNavbar/>
       }
