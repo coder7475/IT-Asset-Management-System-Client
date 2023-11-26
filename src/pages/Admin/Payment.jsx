@@ -1,9 +1,15 @@
+import Package from "../../components/General/Package";
 
-import PackageSection from '../../components/General/PackageSection';
 const Payment = () => {
   return (
     <div>
-      <PackageSection/>
+      <Package
+        values={{
+          type: "pro",
+          price: 5,
+          limit: 5,
+        }}
+      />
     </div>
   );
 };
