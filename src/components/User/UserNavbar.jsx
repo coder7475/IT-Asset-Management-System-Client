@@ -1,8 +1,18 @@
 import { NavLink } from "react-router-dom";
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from "react-router-dom";
 
 const UserNavbar = () => {
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
     console.log("clicked Logout");
+    logOut()
+      .then(res => {
+        console.log(res);
+        navigate("/");
+      })
   }
   return (
     <div className="text-center mt-4">
