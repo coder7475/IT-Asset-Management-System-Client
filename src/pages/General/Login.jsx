@@ -2,8 +2,10 @@ import { useFormik } from "formik";
 import GeneralNavbar from '../../components/General/GeneralNavbar';
 import SocialLogin from '../../components/General/SocialLogin';
 import Divider from '@mui/material/Divider';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
+  const { logIn } = useAuth();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -11,9 +13,14 @@ const Login = () => {
     },
 
     onSubmit: (values) => {
-      console.log(values);     
+      console.log(values);
+      logIn(values.email, values.password) 
+      .then(res => {
+        console.log(res);
+      })
     },
   });
+  
   return (
     <main>
       <GeneralNavbar/>

@@ -8,7 +8,7 @@ import usePublicAxios from "../../hooks/usePublicAxios";
 import { useNavigate } from "react-router-dom";
 
 const EmployeeSignUp = () => {
-  const { createUser, logOut } = useAuth();
+  const { createUser } = useAuth();
   const publicAxios = usePublicAxios();
   const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ const EmployeeSignUp = () => {
             title: "Success",
             text: "Successful Sign In!",
           });
-          logOut();
+          // logOut();
           navigate("/dashboard");
         });
       }

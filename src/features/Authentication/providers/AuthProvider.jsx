@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 import { createContext, useState, useEffect } from "react";
 
@@ -20,7 +21,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log("user in the auth state changed", currentUser);
       setUser(currentUser);
-      // console.log(currentUser);
+      console.log(currentUser);
       setLoading(false);
       if (currentUser) {
         // User is signed in
@@ -54,12 +55,18 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const logIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+}
+
   const authInfo = {
     user,
     loading,
     googleSignIn,
     createUser,
-    logOut
+    logOut,
+    logIn
   };
 
   return (
