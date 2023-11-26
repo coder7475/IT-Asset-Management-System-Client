@@ -14,10 +14,10 @@ const CheckoutForm = () => {
   const [adminData, isAdminLoading] = useAdmin();
   const axiosSecure = useSecureAxios();
   // console.log(adminData.user.package);
-  const unpaidPackages = adminData.user.package.filter(
+  const unpaidPackages = adminData?.user?.package.filter(
     (pack) => pack.value.status === "unpaid"
   );
-  const totalPrice = unpaidPackages.reduce(
+  const totalPrice = unpaidPackages?.reduce(
     (total, item) => total + item.value.price,
     0
   );
@@ -36,10 +36,8 @@ const CheckoutForm = () => {
     }
   }, [axiosSecure, totalPrice]);
   console.log(clientSecret);
-
-  console.log(isAdminLoading);
-  if (isAdminLoading) {
-    return <span>Loading....</span>;
+  if( isAdminLoading ) {
+    return <span>Loading...</span>
   }
 
   const handleSubmit = async (event) => {
@@ -67,6 +65,7 @@ const CheckoutForm = () => {
       console.log("payment method", paymentMethod);
       setError("");
     }
+    
   };
   return (
     <form onSubmit={handleSubmit} className="text-center">
