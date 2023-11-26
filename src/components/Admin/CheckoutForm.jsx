@@ -90,15 +90,30 @@ const CheckoutForm = () => {
       // successful payment
       console.log("payment intent", paymentIntent);
 
-      axiosSecure
-        .patch(`/users/admin/${user.email}`, updatedPackages)
-        .then((res) => {
-          console.log(res);
-        });
-
       if (paymentIntent.status === "succeeded") {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        // update the package status
+        axiosSecure
+          .patch(`/users/admin/${user.email}`, updatedPackages)
+          .then((res) => {
+            console.log(res);
+          });
+
+        // save payment history in databse
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date().toISOstring(), // utc date convert. use moment js to
+        };
+
+        axiosSecure.post('/payments', payment)
+          .then(res => {
+            // TODO: SHow sweet alert and navigate to dashboard
+            console.log(res);
+          })
       }
     }
   };
