@@ -1,25 +1,47 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
-import useAuth from '../../hooks/useAuth';
-import useAdmin from '../../hooks/useAdmin';
+import { useState, useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
+import useSecureAxios from '../../hooks/useSecureAxios';
 
 const CheckoutForm = () => {
   const [error, setError] = useState(``);
+  const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   console.log(user);
-  const [ adminData , isAdminLoading] = useAdmin();
-  console.log(isAdminLoading);
-  if(isAdminLoading) {
-    return <span>Loading....</span>
-  }
+  const [adminData, isAdminLoading] = useAdmin();
+  const axiosSecure = useSecureAxios();
   // console.log(adminData.user.package);
-  const unpaidPackages = adminData.user.package.filter((pack) => pack.value.status === 'unpaid');
-  const totalPrice = unpaidPackages.reduce((total, item) => total + item.value.price, 0)
+  const unpaidPackages = adminData.user.package.filter(
+    (pack) => pack.value.status === "unpaid"
+  );
+  const totalPrice = unpaidPackages.reduce(
+    (total, item) => total + item.value.price,
+    0
+  );
   // console.log(unpaidPackages);
   console.log(totalPrice);
   // console.log(elements);
+
+  useEffect(() => {
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
+  }, [axiosSecure, totalPrice]);
+  console.log(clientSecret);
+
+  console.log(isAdminLoading);
+  if (isAdminLoading) {
+    return <span>Loading....</span>;
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -50,7 +72,7 @@ const CheckoutForm = () => {
     <form onSubmit={handleSubmit} className="text-center">
       <CardElement
         options={{
-          iconStyle: 'solid',
+          iconStyle: "solid",
           style: {
             base: {
               fontSize: "20px",
@@ -58,8 +80,6 @@ const CheckoutForm = () => {
               "::placeholder": {
                 color: "#aab7c4",
               },
-              
-              
             },
             invalid: {
               color: "#9e2146",
