@@ -3,6 +3,9 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { useState } from "react";
 import usePublicAxios from "../../hooks/usePublicAxios";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const options = [
   { value: { price: 5, members: 5 }, label: "Maximum 5 employees: $5" },
@@ -10,15 +13,17 @@ const options = [
   { value: { price: 15, members: 20 }, label: "Maximum 20 employees: $15" },
 ];
 
+
 const imgHostingKey = import.meta.env.VITE_IMGBB_KEY;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
-
 const AdminSignUp = () => {
+  const navigate = useNavigate();
+  const { createUser, logOut } = useAuth();
   const [selectedOption, setSelectedOption] = useState(null);
   const publicAxios = usePublicAxios();
   const [image, setImage] = useState('');
-  console.log(image);
-  console.log(selectedOption);
+  // console.log(image);
+  // console.log(selectedOption);
 
   const formik = useFormik({
     initialValues: {
@@ -32,6 +37,42 @@ const AdminSignUp = () => {
 
     onSubmit: (values) => {
       console.log(values);
+      const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g;
+      const valid = re.test(values.password);
+      if (!valid) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid Password!",
+          footer: "Minimum six characters, at least one letter and one number"
+        });
+      } else {
+        createUser(values.email, values.password).then((result) => {
+          console.log(result);
+          // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
+          const userInfo = {
+            role: "admin",
+            name: values.adminName,
+            company: values.companyName,
+            email: values.email,
+            birthday: values.date,
+            companyLogo: image,
+            package: [selectedOption]
+          };
+          console.log(userInfo);
+          publicAxios.post("/users", userInfo).then(() => {
+            // console.log(res.data);
+          });
+
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successful Sign In!",
+          });
+          logOut();
+          navigate("/dashboard");
+        });
+      }
     },
   });
 
@@ -40,7 +81,7 @@ const AdminSignUp = () => {
   };
 
   const handleImage = async (img) => {
-    console.log(img);
+    // console.log(img);
     const imageFile = { image: img };
     const res = await publicAxios.post(imageHostingApi, imageFile, {
       headers: {

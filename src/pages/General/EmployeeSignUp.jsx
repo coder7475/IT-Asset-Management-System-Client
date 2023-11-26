@@ -41,8 +41,7 @@ const EmployeeSignUp = () => {
             email: values.email,
             birthday: values.date,
           };
-          console.log(userInfo);
-          console.log(userInfo);
+          // console.log(userInfo);
           publicAxios.post("/users", userInfo).then(() => {
             // console.log(res.data);
           });
@@ -53,11 +52,12 @@ const EmployeeSignUp = () => {
             text: "Successful Sign In!",
           });
           logOut();
-          navigate("/");
+          navigate("/dashboard");
         });
       }
     },
-  });
+  }
+  );
   return (
     <main>
       <GeneralNavbar />

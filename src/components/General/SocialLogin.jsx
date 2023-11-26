@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
-  const { googleSignIn, logOut } = useAuth();
+  const { googleSignIn } = useAuth();
   const publicAxios = usePublicAxios();
   const navigate = useNavigate();
   // console.log(user);
@@ -28,17 +28,21 @@ const SocialLogin = () => {
       // console.log(userInfo);
       publicAxios.post("/users", userInfo).then(() => {
         // console.log(res.data);
-
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "New User is created!",
+        });
+      }).catch(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successful Sign In!",
+        });
       });
-
-
-      Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Successful Sign In!",
-      });
-      logOut();
-      navigate("/");
+      
+      // logOut();
+      navigate("/dashboard");
     });
   };
 
