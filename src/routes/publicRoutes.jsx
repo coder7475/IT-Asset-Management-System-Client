@@ -5,6 +5,7 @@ import Homepage from '../pages/General/Homepage';
 import AdminSignUp from '../pages/General/AdminSignUp';
 import EmployeeSignUp from '../pages/General/EmployeeSignUp';
 import Dashboard from '../pages/Logged/Dashboard';
+import Payment from '../components/Admin/Payment';
 
 const router = Router([
   {
@@ -23,6 +24,10 @@ const router = Router([
       {
         path: "/joinEmployee",
         element: <EmployeeSignUp/>
+      },
+      {
+        path: "/payment",
+        element: <Payment/>
       }
     ]
   },

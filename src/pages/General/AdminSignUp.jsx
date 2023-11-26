@@ -70,7 +70,7 @@ const AdminSignUp = () => {
             text: "Successful Sign In!",
           });
           logOut();
-          navigate("/dashboard");
+          navigate("/payment");
         });
       }
     },
