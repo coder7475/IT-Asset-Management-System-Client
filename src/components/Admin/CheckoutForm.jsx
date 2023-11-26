@@ -50,6 +50,7 @@ const CheckoutForm = () => {
           },
         }}
       />
+      <p className="text-red-400 text-sm font-light">{error}</p>
       <button
         className="border-2 my-2 px-2 py-1 text-sm rounded-xl text-center bg-blue-500 text-white"
         type="submit"
