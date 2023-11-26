@@ -1,10 +1,24 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
+import useAuth from '../../hooks/useAuth';
+import useAdmin from '../../hooks/useAdmin';
 
 const CheckoutForm = () => {
   const [error, setError] = useState(``);
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useAuth();
+  console.log(user);
+  const [ adminData , isAdminLoading] = useAdmin();
+  console.log(isAdminLoading);
+  if(isAdminLoading) {
+    return <span>Loading....</span>
+  }
+  // console.log(adminData.user.package);
+  const unpaidPackages = adminData.user.package.filter((pack) => pack.value.status === 'unpaid');
+  const totalPrice = unpaidPackages.reduce((total, item) => total + item.value.price, 0)
+  // console.log(unpaidPackages);
+  console.log(totalPrice);
   // console.log(elements);
   const handleSubmit = async (event) => {
     event.preventDefault();

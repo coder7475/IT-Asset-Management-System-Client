@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const options = [
-  { value: { price: 5, members: 5 }, label: "Maximum 5 employees: $5" },
-  { value: { price: 8, members: 10 }, label: "Maximum 10 employees: $8" },
-  { value: { price: 15, members: 20 }, label: "Maximum 20 employees: $15" },
+  { value: { price: 5, members: 5, status: 'unpaid' }, label: "Maximum 5 employees: $5" },
+  { value: { price: 8, members: 10, status: 'unpaid' }, label: "Maximum 10 employees: $8" },
+  { value: { price: 15, members: 20, status: 'unpaid' }, label: "Maximum 20 employees: $15" },
 ];
 
 
@@ -46,8 +46,12 @@ const AdminSignUp = () => {
           text: "Invalid Password!",
           footer: "Minimum six characters, at least one letter and one number"
         });
-      } else {
-        createUser(values.email, values.password).then((result) => {
+      } 
+      else 
+      {
+
+        createUser(values.email, values.password)
+        .then((result) => {
           console.log(result);
           // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
           const userInfo = {
@@ -59,7 +63,9 @@ const AdminSignUp = () => {
             companyLogo: image,
             package: [selectedOption]
           };
+
           console.log(userInfo);
+
           publicAxios.post("/users", userInfo).then(() => {
             // console.log(res.data);
           });
@@ -70,6 +76,7 @@ const AdminSignUp = () => {
             text: "Successful Sign In!",
           });
           // logOut();
+
           navigate("/payment");
         });
       }

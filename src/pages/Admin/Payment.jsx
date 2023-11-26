@@ -7,6 +7,7 @@ import CheckoutForm from '../../components/Admin/CheckoutForm';
 const stripePromise = loadStripe(import.meta.env.VITE_Publishable_Key);
 
 const Payment = () => {
+ 
   return (
     <div>
       <h1 className="text-center font-bold text-5xl">Payment</h1>
