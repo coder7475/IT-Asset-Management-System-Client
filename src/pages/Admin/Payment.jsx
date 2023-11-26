@@ -1,7 +1,8 @@
+
 const Payment = () => {
   return (
     <div>
-        Payment      
+      Payment      
     </div>
   );
 };
