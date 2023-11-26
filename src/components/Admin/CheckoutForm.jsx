@@ -36,13 +36,16 @@ const CheckoutForm = () => {
     <form onSubmit={handleSubmit} className="text-center">
       <CardElement
         options={{
+          iconStyle: 'solid',
           style: {
             base: {
-              fontSize: "16px",
+              fontSize: "20px",
               color: "#424770",
               "::placeholder": {
                 color: "#aab7c4",
               },
+              
+              
             },
             invalid: {
               color: "#9e2146",
