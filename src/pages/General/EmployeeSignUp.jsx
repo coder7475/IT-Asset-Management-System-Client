@@ -22,7 +22,7 @@ const EmployeeSignUp = () => {
 
     onSubmit: (values) => {
       // console.log(values);
-      const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g;
+      const re = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/g;
       const valid = re.test(values.password);
       // console.log(valid);
       if (!valid) {
@@ -33,8 +33,8 @@ const EmployeeSignUp = () => {
           footer: "Minimum six characters, at least one letter and one number"
         });
       } else {
-        createUser(values.email, values.password).then((result) => {
-          console.log(result);
+        createUser(values.email, values.password).then(() => {
+          // console.log(result);
           // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
           const userInfo = {
             name: values.employeeName,
