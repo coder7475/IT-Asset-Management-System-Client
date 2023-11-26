@@ -8,7 +8,7 @@ const UserNavbar = () => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    console.log("clicked Logout");
+    // console.log("clicked Logout");
     logOut()
       .then(() => {
         // console.log(res);

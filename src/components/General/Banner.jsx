@@ -45,7 +45,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
         <div className="flex h-[400px] md:h-[500px] lg:h-[600px] xl:h-[850px] justify-center items-center flex-col">
-            <div className="w-full h-full bg-[url('https://i.ibb.co/B61LKzM/join-As-Admin.jpg')] bg-cover bg-center">
+            <div className="w-full h-full bg-[url('https://i.ibb.co/PZVK8Wp/join-As-Admin.jpg')] bg-cover bg-center">
               <div className="w-full h-full flex  justify-center items-center backdrop-brightness-50 flex-col gap-4 text-white text-xl">
                 <h1 className="font-medium text-center md:font-bold"> Elevate Your Administration Skills</h1>
                 <p className="w-1/2 font-light text-sm md:text-lg">

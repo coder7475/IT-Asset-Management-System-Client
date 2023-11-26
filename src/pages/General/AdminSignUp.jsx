@@ -18,7 +18,7 @@ const imgHostingKey = import.meta.env.VITE_IMGBB_KEY;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
 const AdminSignUp = () => {
   const navigate = useNavigate();
-  const { createUser, logOut } = useAuth();
+  const { createUser } = useAuth();
   const [selectedOption, setSelectedOption] = useState(null);
   const publicAxios = usePublicAxios();
   const [image, setImage] = useState('');
@@ -69,7 +69,7 @@ const AdminSignUp = () => {
             title: "Success",
             text: "Successful Sign In!",
           });
-          logOut();
+          // logOut();
           navigate("/payment");
         });
       }

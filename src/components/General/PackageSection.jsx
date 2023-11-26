@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 const PackageSection = () => {
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -54,21 +55,22 @@ const PackageSection = () => {
                 </span>
                 Infinity Max Assets
               </p>
-
-              <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                Purchase
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-auto"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </button>
+              <NavLink to="/joinAdmin">
+                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
+                  Purchase
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="w-4 h-4 ml-auto"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </NavLink>
             </div>
           </div>
 
@@ -118,21 +120,22 @@ const PackageSection = () => {
                 </span>
                 Infinity Max Assets
               </p>
-
-              <button className="flex items-center text-white bg-indigo-500 border-0 py-2 px-4 mt-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
-                Purchase
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-auto"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </button>
+              <NavLink to="/joinAdmin">
+                <button className="flex items-center text-white bg-indigo-500 border-0 py-2 px-4 mt-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
+                  Purchase
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="w-4 h-4 ml-auto"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </NavLink>
             </div>
           </div>
 
@@ -179,21 +182,22 @@ const PackageSection = () => {
                 </span>
                 Infinity Max Assets
               </p>
-
-              <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                Purchase
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 ml-auto"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </button>
+              <NavLink to="/joinAdmin">
+                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
+                  Purchase
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="w-4 h-4 ml-auto"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>

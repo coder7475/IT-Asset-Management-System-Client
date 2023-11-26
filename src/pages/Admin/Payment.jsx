@@ -1,8 +1,9 @@
 
+import PackageSection from '../../components/General/PackageSection';
 const Payment = () => {
   return (
     <div>
-      Payment      
+      <PackageSection/>
     </div>
   );
 };
