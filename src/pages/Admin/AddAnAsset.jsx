@@ -1,8 +1,31 @@
+import useAdmin from '../../hooks/useAdmin';
+
 const AddAnAsset = () => {
+  const [ adminData ] = useAdmin();
+  console.log(adminData);
+  const handleAddAsset = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const type = form.get("type");
+    const quantity = form.get("quantity");
+    const d = new Date();
+    const date = d.toISOString();
+    const asset = {
+      name,
+      type,
+      quantity,
+      company: adminData.company,
+      added: date
+    }
+
+    console.log(asset);
+  }
+
   return (
     <div className="my-4 ml-4 min-h-screen max-w-2xl mx-auto">
       <h1 className="font-bold text-xl">Add a new Asset to the Company</h1>
-      <form className="mt-4">
+      <form className="mt-4" onSubmit={handleAddAsset} >
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Product Name
         </label>
