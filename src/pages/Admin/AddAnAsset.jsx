@@ -1,8 +1,11 @@
 import useAdmin from '../../hooks/useAdmin';
+import useSecureAxios from '../../hooks/useSecureAxios';
 
 const AddAnAsset = () => {
   const [ adminData ] = useAdmin();
   console.log(adminData);
+  const axiosSecure = useSecureAxios();
+
   const handleAddAsset = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -20,6 +23,11 @@ const AddAnAsset = () => {
     }
 
     console.log(asset);
+
+    axiosSecure.post("/admin/addAnAsset", asset)
+      .then(res => {
+        console.log(res.data);
+      })
   }
 
   return (
