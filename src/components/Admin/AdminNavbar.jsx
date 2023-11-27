@@ -63,11 +63,11 @@ const AdminNavbar = ({ currentUser }) => {
           {currentUser.name}
         </li>
         <li>
-          <NavLink to="/dashboard" onClick={handleLogOut}>
+          <button  onClick={handleLogOut}>
             
             Log Out
           
-          </NavLink>
+          </button>
         </li>
       </ul>
     </div>
