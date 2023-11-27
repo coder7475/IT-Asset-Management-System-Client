@@ -10,6 +10,7 @@ import Login from '../pages/General/Login';
 import AdminHome from '../pages/Admin/AdminHome';
 import AddAnAsset from '../pages/Admin/AddAnAsset';
 import EmpHome from '../pages/Logged/EmpHome';
+import CustomRequest from '../pages/Logged/CustomRequest';
 
 const router = Router([
   {
@@ -47,9 +48,12 @@ const router = Router([
       // Employee routes
       {
         path: "userHome",
-        element: <EmpHome/>
-      }
-      ,
+        element: <EmpHome />
+      },
+      {
+        path: "customRequest",
+        element: <CustomRequest />
+      },      
       // Admin routes
       {
         path: "adminHome",
