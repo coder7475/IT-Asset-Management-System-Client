@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
 import useSecureAxios from "../../hooks/useSecureAxios";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
   const [error, setError] = useState(``);
@@ -12,6 +14,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
+  const navigate = useNavigate();
   console.log(user);
   const [adminData, isAdminLoading] = useAdmin();
   const axiosSecure = useSecureAxios();
@@ -19,10 +22,7 @@ const CheckoutForm = () => {
   const unpaidPackages = adminData?.user?.package.filter(
     (pack) => pack.value.status === "unpaid"
   );
-  // make all packages status paid
-  const updatedPackages = adminData?.user?.package?.map((pack) => pack);
-  updatedPackages.forEach((pack) => (pack.value.status = "paid"));
-  console.log(updatedPackages);
+
   const totalPrice = unpaidPackages?.reduce(
     (total, item) => total + item.value.price,
     0
@@ -41,7 +41,9 @@ const CheckoutForm = () => {
         });
     }
   }, [axiosSecure, totalPrice]);
+
   console.log(clientSecret);
+
   if (isAdminLoading) {
     return <span>Loading...</span>;
   }
@@ -95,6 +97,10 @@ const CheckoutForm = () => {
         setTransactionId(paymentIntent.id);
 
         // update the package status
+        // make all packages status paid
+        const updatedPackages = adminData?.user?.package?.map((pack) => pack);
+        updatedPackages?.forEach((pack) => (pack.value.status = "paid"));
+        console.log(updatedPackages);
         axiosSecure
           .patch(`/users/admin/${user.email}`, updatedPackages)
           .then((res) => {
@@ -106,14 +112,19 @@ const CheckoutForm = () => {
           email: user.email,
           price: totalPrice,
           transactionId: paymentIntent.id,
-          date: new Date().toISOstring(), // utc date convert. use moment js to
+          date: new Date(), // utc date convert. use moment js to
         };
 
-        axiosSecure.post('/payments', payment)
-          .then(res => {
-            // TODO: SHow sweet alert and navigate to dashboard
-            console.log(res);
-          })
+        axiosSecure.post("/payments", payment).then((res) => {
+          // TODO: SHow sweet alert and navigate to dashboard
+          console.log(res);
+          navigate("/dashboard");
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successful Payment!",
+          });
+        });
       }
     }
   };

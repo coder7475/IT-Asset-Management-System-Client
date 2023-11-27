@@ -8,7 +8,7 @@ const Dashboard = () => {
   return <div className="flex">
     <div className="w-64 min-h-screen bg-slate-600 text-white">
       {
-        adminData? <ul><li>Admin</li></ul>
+        adminData?.admin? <UserNavbar/>
         : 
         <UserNavbar/>
       }
