@@ -1,7 +1,11 @@
 
 import useAdmin from '../../hooks/useAdmin';
+import useSecureAxios from '../../hooks/useSecureAxios';
+import { Swal } from 'sweetalert2';
+
 const CustomRequest = () => {
   const [ adminData ] = useAdmin();
+  const axiosSecure = useSecureAxios();
   // console.log(adminData);
   const handleCustomRequest = (e) => {
     e.preventDefault();
@@ -28,6 +32,17 @@ const CustomRequest = () => {
     }
 
     console.log(customReq);
+
+
+    axiosSecure.post("/user/makeCustomRequest", customReq)
+      .then(() => {
+        // console.log(res.data);
+         Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successfully made Request",
+        });
+      })
   }
 
   return (
