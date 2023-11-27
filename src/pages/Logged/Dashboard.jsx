@@ -12,7 +12,7 @@ const Dashboard = () => {
       {
         adminData?.admin? <AdminNavbar currentUser={adminData.user}/>
         : 
-        <UserNavbar/>
+        <UserNavbar currentUser={adminData.user}/>
       }
     </div>
     <div>

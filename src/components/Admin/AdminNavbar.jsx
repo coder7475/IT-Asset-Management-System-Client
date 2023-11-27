@@ -27,7 +27,7 @@ const AdminNavbar = ({ currentUser }) => {
       <ul className="flex flex-col gap-4 font-bold">
         <li>
           <NavLink to="/dashboard">
-            <img src={currentUser.companyLogo} alt="company Logo" width="80px" />
+            <img src={currentUser?.companyLogo} alt="company Logo" width="80px" />
           </NavLink>
         </li>
         <li>
@@ -60,7 +60,7 @@ const AdminNavbar = ({ currentUser }) => {
 
 
         <li className="italic underline">
-          {currentUser.name}
+          {currentUser?.name}
         </li>
         <li>
           <button  onClick={handleLogOut}>
