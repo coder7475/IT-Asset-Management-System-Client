@@ -1,6 +1,7 @@
 import useAdmin from '../../hooks/useAdmin';
 import UserNavbar from '../../components/User/UserNavbar';
 import AdminNavbar from '../../components/Admin/AdminNavbar';
+import { Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
   const [adminData] = useAdmin();
@@ -15,7 +16,7 @@ const Dashboard = () => {
       }
     </div>
     <div>
-      Content
+      <Outlet/>
     </div>
   </div>
 };

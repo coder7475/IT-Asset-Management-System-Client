@@ -108,11 +108,12 @@ const CheckoutForm = () => {
           });
 
         // save payment history in databse
+        const d = new Date();
         const payment = {
           email: user.email,
           price: totalPrice,
           transactionId: paymentIntent.id,
-          date: new Date(), // utc date convert. use moment js to
+          date: d.toISOString(), // utc date convert. use moment js to
         };
 
         axiosSecure.post("/payments", payment).then((res) => {

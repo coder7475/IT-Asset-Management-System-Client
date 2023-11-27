@@ -38,7 +38,7 @@ const AdminNavbar = ({ currentUser }) => {
         </li>
 
         <li>
-          <NavLink to="/dashboard">Add an Asset</NavLink>
+          <NavLink to="/dashboard/addAnAsset">Add an Asset</NavLink>
         </li>
         <li>
           <NavLink to="/dashboard">Custom Request List</NavLink>
