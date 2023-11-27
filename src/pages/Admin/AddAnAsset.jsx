@@ -1,5 +1,6 @@
 import useAdmin from '../../hooks/useAdmin';
 import useSecureAxios from '../../hooks/useSecureAxios';
+import { Swal } from 'sweetalert2';
 
 const AddAnAsset = () => {
   const [ adminData ] = useAdmin();
@@ -19,14 +20,20 @@ const AddAnAsset = () => {
       type,
       quantity,
       company: adminData.company,
-      added: date
+      added: date,
+      availability: quantity > 0
     }
 
-    console.log(asset);
+    // console.log(asset);
 
     axiosSecure.post("/admin/addAnAsset", asset)
-      .then(res => {
-        console.log(res.data);
+      .then(() => {
+        // console.log(res.data);
+         Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successful added a new asset!",
+        });
       })
   }
 
@@ -56,15 +63,15 @@ const AddAnAsset = () => {
           <option value="" disabled>
             Select Product Type
           </option>
-          <option value="Desktops">Desktops</option>
-          <option value="Laptops">Laptops</option>
-          <option value="Servers">Servers</option>
+          <option value="returnable">returnable</option>
+          <option value="non-returnable">non-returnable</option>
+          {/* <option value="Servers">Servers</option>
           <option value="Networking">Networking</option>
           <option value="Storage">Storage</option>
           <option value="OS">OS</option>
           <option value="Application">Application</option>
           <option value="Firewalls">Firewalls</option>
-          <option value="Routers">Routers</option>
+          <option value="Routers">Routers</option> */}
         </select>
         <label htmlFor="quantity" className="block mb-2 text-lg font-medium">
           Product Quantity
