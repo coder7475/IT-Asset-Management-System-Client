@@ -9,6 +9,7 @@ import Payment from '../pages/Admin/Payment';
 import Login from '../pages/General/Login';
 import AdminHome from '../pages/Admin/AdminHome';
 import AddAnAsset from '../pages/Admin/AddAnAsset';
+import EmpHome from '../pages/Logged/EmpHome';
 
 const router = Router([
   {
@@ -43,8 +44,15 @@ const router = Router([
     element: <Dashboard/>,
     errorElement: <ErrorPage />,
     children: [
+      // Employee routes
       {
-        path: "/dashboard",
+        path: "userHome",
+        element: <EmpHome/>
+      }
+      ,
+      // Admin routes
+      {
+        path: "adminHome",
         element: <AdminHome/>
       },
       {

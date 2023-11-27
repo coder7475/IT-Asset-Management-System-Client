@@ -24,7 +24,7 @@ const UserNavbar = () => {
     <div className="text-center mt-4">
       <ul className="flex flex-col gap-4 font-bold">
         <li>
-          <NavLink to="/dashboard">Home</NavLink>
+          <NavLink to="/dashboard/userHome">Home</NavLink>
         </li>
         <li>
           <NavLink to="/dashboard">My Team</NavLink>
