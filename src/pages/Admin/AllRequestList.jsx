@@ -6,7 +6,7 @@ const AllRequestList = () => {
   const axiosSecure = useSecureAxios();
   const [adminData, isAdminLoading] = useAdmin();
   const company = adminData?.user?.company;
-  console.log(company);
+  // console.log(company);
   const { data: allRequests = [], isPending: isRequestLoading } = useQuery({
     queryKey: ["allRequests", company],
     enabled: !isAdminLoading,
@@ -22,13 +22,20 @@ const AllRequestList = () => {
 
   console.log(allRequests);
 
+  const handleApproveRequest = (request) => {
+    // console.log(request);
+    axiosSecure.put(`/admin/approveRequest/${request.name}`)
+      .then(res => {
+        console.log(res);
+      })
+  }
+
   return (
     <div className="mt-4 flex flex-col gap-5 items-center">
       <h1 className="font-bold text-center text-xl">All Request List</h1>
       <div className="grid grid-cols-1 gap-2 mt-5">
         {allRequests.map((empl) => (
-          <div
-            // onClick={() => handleRemoveMember(empl)}
+          <div          
             key={empl._id}
             className="border-2 p-2 rounded-lg text-center space-y-2 bg-gray-200"
           >
@@ -66,8 +73,10 @@ const AllRequestList = () => {
             </h1>
             <div className="flex  gap-4 justify-center">
               <button
+                onClick={() => handleApproveRequest(empl)}
                 type="button"
                 className="block w-32 hover:bg-black bg-blue-500 text-white p-2 rounded-xl"
+                disabled={ empl.status !== "pending"}
               >
                 Approve
               </button>

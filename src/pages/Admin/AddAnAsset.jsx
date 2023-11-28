@@ -20,7 +20,7 @@ const AddAnAsset = () => {
     const asset = {
       name,
       type,
-      quantity,
+      quantity: parseInt(quantity),
       company,
       added: date,
       admin: adminEmail,
