@@ -15,6 +15,7 @@ import AddAnEmployee from '../components/Admin/AddAnEmployee';
 import MyEmployeeList from '../pages/Admin/MyEmployeeList';
 import RequestForAnAsset from '../pages/Logged/RequestForAnAsset';
 import AllRequestList from '../pages/Admin/AllRequestList';
+import CustomRequestList from '../pages/Admin/CustomRequestList';
 
 const router = Router([
   {
@@ -81,6 +82,10 @@ const router = Router([
         element: <AllRequestList/>
       }
       ,
+      {
+        path: "customRequestList",
+        element: <CustomRequestList/>
+      },
       {
         path: "myEmployeeList",
         element: <MyEmployeeList/>

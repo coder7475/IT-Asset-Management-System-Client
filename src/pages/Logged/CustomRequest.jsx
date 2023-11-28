@@ -18,7 +18,7 @@ const CustomRequest = () => {
     const addInfo = form.get("addInfo");
     const d = new Date();
     const date = d.toISOString();
-    const user = adminData.user;
+    const company = adminData.user.company;
     const customReq = {
       name,
       price,
@@ -27,7 +27,7 @@ const CustomRequest = () => {
       needed,
       addInfo,
       date,
-      user,
+      company,
       status: "pending"
     }
 

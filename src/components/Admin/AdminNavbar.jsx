@@ -31,7 +31,7 @@ const AdminNavbar = ({ currentUser }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard">Home</NavLink>
+          <NavLink to="/dashboard/adminHome">Home</NavLink>
         </li>
         <li>
           <NavLink to="/dashboard">Asset List</NavLink>
@@ -44,7 +44,7 @@ const AdminNavbar = ({ currentUser }) => {
           <NavLink to="/dashboard/allRequestList">All Request List</NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard">Custom Request List</NavLink>
+          <NavLink to="/dashboard/customRequestList">Custom Request List</NavLink>
         </li>
 
         <li>
