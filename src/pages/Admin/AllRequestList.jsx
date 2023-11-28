@@ -48,9 +48,21 @@ const AllRequestList = () => {
     });
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // setTitle(e.target)
+    const form = new FormData(e.currentTarget);
+    const value = form.get("title");
+    console.log(value);
+  }
+
   return (
     <div className="mt-4 flex flex-col gap-5 items-center">
       <h1 className="font-bold text-center text-xl">All Request List</h1>
+      <form onSubmit={handleSearch}>
+          <input type="text" name="title" className="rounded-l-xl h-12 px-2 border-2" placeholder="Search"/>
+          <button className="rounded-r-xl h-12 px-2 bg-blue-500 text-white">Search</button>
+        </form>
       <div className="grid grid-cols-1 gap-2 mt-5">
         {allRequests.map((empl) => (
           <div
