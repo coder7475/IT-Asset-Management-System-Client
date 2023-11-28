@@ -2,17 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import useSecureAxios from "../../hooks/useSecureAxios";
 import useAdmin from "../../hooks/useAdmin";
 import Swal from "sweetalert2";
+import { useState } from 'react';
 
 const AllRequestList = () => {
   const axiosSecure = useSecureAxios();
   const [adminData, isAdminLoading] = useAdmin();
+  const [search, setSearch] = useState('');
   const company = adminData?.user?.company;
   // console.log(company);
   const { data: allRequests = [], isPending: isRequestLoading, refetch } = useQuery({
-    queryKey: ["allRequests", company],
+    queryKey: ["allRequests", company, search],
     enabled: !isAdminLoading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/admin/allRequest/${company}`);
+      const res = await axiosSecure.get(`/admin/allRequest/${company}?search=${search}`);
       return res.data;
     },
   });
@@ -53,7 +55,9 @@ const AllRequestList = () => {
     // setTitle(e.target)
     const form = new FormData(e.currentTarget);
     const value = form.get("title");
-    console.log(value);
+    // console.log(value);
+    console.log("clicked");
+    setSearch(value);
   }
 
   return (
@@ -61,7 +65,7 @@ const AllRequestList = () => {
       <h1 className="font-bold text-center text-xl">All Request List</h1>
       <form onSubmit={handleSearch}>
           <input type="text" name="title" className="rounded-l-xl h-12 px-2 border-2" placeholder="Search"/>
-          <button className="rounded-r-xl h-12 px-2 bg-blue-500 text-white">Search</button>
+          <button type="submit" className="rounded-r-xl h-12 px-2 bg-blue-500 text-white">Search</button>
         </form>
       <div className="grid grid-cols-1 gap-2 mt-5">
         {allRequests.map((empl) => (
