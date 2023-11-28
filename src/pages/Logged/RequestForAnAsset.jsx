@@ -3,15 +3,17 @@ import { useState } from "react";
 import useSecureAxios from "../../hooks/useSecureAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAdmin from "../../hooks/useAdmin";
+import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const RequestForAnAsset = () => {
   // const [allAssets] = useAssets();
   // console.log(allAssets);
   const [name, setName] = useState("");
+  const { user } = useAuth();
   const axiosSecure = useSecureAxios();
   const [adminData, isAdminLoading] = useAdmin();
   const company = adminData?.user?.company;
-
   const handleSearch = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -33,6 +35,34 @@ const RequestForAnAsset = () => {
     return <span>Loading...</span>
   }
 
+  const handleRequesAsset = async(asset) => {
+    console.log(asset);
+    const { value: additionalNotes } = await Swal.fire({
+      title: "Anything to Add?",
+      input: "text",
+      inputLabel: "Additional Notes",
+    });
+
+    console.log(additionalNotes);
+    const d = new Date();
+    const date = d.toISOString();
+    const request = {
+      name: asset.name,
+      type: asset.type,
+      requesterEmail: user.email,
+      requesterName: user.displayName,
+      requesterCompany: company,
+      requestDate: date,
+      additionalNotes,
+      status: "pending"
+    }
+    // console.log(request);
+    axiosSecure.post("/user/makeAssetRequest", request)
+      .then(res => {
+        console.log(res);
+      })
+  }
+
   return (
     <div className="mt-4 ml-2">
       <h1 className="font-bold text-center text-xl">Request For an Asset</h1>
@@ -49,6 +79,8 @@ const RequestForAnAsset = () => {
           Search
         </button>
       </form>
+      
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
         {allAssets.map((asset) => (
@@ -72,6 +104,7 @@ const RequestForAnAsset = () => {
             </h1>
             <button
               type="button"
+              onClick={() => handleRequesAsset(asset)}
               disabled={!asset?.availability}
               className="block bg-blue-500 text-white p-2 rounded-xl border-2 disabled:bg-gray-500"
             >
