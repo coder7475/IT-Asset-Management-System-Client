@@ -12,6 +12,7 @@ import AddAnAsset from '../pages/Admin/AddAnAsset';
 import EmpHome from '../pages/Logged/EmpHome';
 import CustomRequest from '../pages/Logged/CustomRequest';
 import AddAnEmployee from '../components/Admin/AddAnEmployee';
+import MyEmployeeList from '../pages/Admin/MyEmployeeList';
 
 const router = Router([
   {
@@ -67,6 +68,10 @@ const router = Router([
       {
         path: "addAnAsset",
         element: <AddAnAsset/>
+      },
+      {
+        path: "myEmployeeList",
+        element: <MyEmployeeList/>
       }
     ]
   }

@@ -2,10 +2,10 @@
 import useSecureAxios from './useSecureAxios';
 import { useQuery } from '@tanstack/react-query';
 
-const useEmployee = () => {
+const useUsers = () => {
   const axiosSecure = useSecureAxios();
 
-  const { data: allUsers = [], isPending: isUsersLoading, refetch } = useQuery({
+  const { data: allUsers = [], isPending: isUsersLoading } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users`);
@@ -13,7 +13,7 @@ const useEmployee = () => {
     },
   });
 
-  return [allUsers, isUsersLoading, refetch];
+  return [allUsers, isUsersLoading];
 };
 
-export default useEmployee;
+export default useUsers;

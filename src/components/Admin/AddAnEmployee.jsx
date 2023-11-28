@@ -1,37 +1,39 @@
-import useEmployee from "../../hooks/useUsers";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import useAdmin from '../../hooks/useAdmin';
 import useSecureAxios from '../../hooks/useSecureAxios';
 import Swal from 'sweetalert2';
+import useUsers from '../../hooks/useUsers';
+import { useNavigate } from 'react-router-dom';
 
 const AddAnEmployee = () => {
-  const [allUsers] = useEmployee();
-  const { user } = useAuth();
-  console.log(user);
+  const [allUsers ] = useUsers();
+  // const { user } = useAuth();
+  // console.log(user);
   const employees = allUsers.filter((user) => user.company === undefined);
-  console.log(employees);
-  const [ adminData, refetch ] = useAdmin();
-  console.log(adminData);
+  // console.log(employees);
+  const [ adminData ] = useAdmin();
+  // console.log(adminData);
   const axiosSecure = useSecureAxios();
+  const navigate = useNavigate();
 
   const handleAddMember = (employee) => {
     console.log(employee);
     const id = employee._id;
     const updated = {
       role: "employee",
-      company: adminData.user.company,
-      companyLogo: adminData.user.companyLogo
+      company: adminData?.user?.company,
+      companyLogo: adminData?.user?.companyLogo
     }
     // console.log(updated);
     axiosSecure.put(`/admin/addToTeam/${id}`, updated)
       .then(() => {
-        refetch();
         // console.log(res.data);
         Swal.fire({
           icon: "success",
           title: "Success",
           text: "Successful added to the team!",
         });   
+        navigate("/dashboard/myEmployeeList")
       })
 
   }
