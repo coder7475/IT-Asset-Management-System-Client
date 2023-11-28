@@ -15,7 +15,7 @@ const Dashboard = () => {
         <UserNavbar currentUser={adminData.user}/>
       }
     </div>
-    <div>
+    <div className="w-full">
       <Outlet/>
     </div>
   </div>
