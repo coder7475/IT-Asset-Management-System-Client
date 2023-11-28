@@ -50,17 +50,19 @@ const CustomRequestList = () => {
     });
   };
 
-  // const handleRejectRequest = (request) => {
-  //   axiosSecure.put(`/admin/rejectRequest/${request.name}`).then((res) => {
-  //     console.log(res);
-  //     refetch();
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Rejected",
-  //       text: "Successfully Rejected the Request!",
-  //     });
-  //   });
-  // };
+  const handleRejectRequest = (request) => {
+    console.log(request.name);
+    axiosSecure.put(`/admin/rejectCustomRequest/${request.name}`)
+    .then((res) => {
+      console.log(res);
+      refetch();
+      Swal.fire({
+        icon: "error",
+        title: "Rejected",
+        text: "Successfully Rejected the Request!",
+      });
+    });
+  };
 
   
   return (
@@ -113,7 +115,7 @@ const CustomRequestList = () => {
                 Approve
               </button>
               <button
-                // onClick={() => handleRejectRequest(empl)}
+                onClick={() => handleRejectRequest(empl)}
                 disabled={empl.status !== "pending"}
                 type="button"
                 className="block w-32 bg-blue-300 hover:bg-black text-white p-2 rounded-xl"
