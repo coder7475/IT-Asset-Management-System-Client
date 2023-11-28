@@ -30,7 +30,8 @@ const RequestForAnAsset = () => {
             </h1>
             <button
               type="button"
-              className="block bg-blue-500 text-white p-2 rounded-xl border-2"
+              disabled={!asset?.availability}
+              className="block bg-blue-500 text-white p-2 rounded-xl border-2 disabled:bg-gray-500"
             >
               Request Asset
             </button>
