@@ -1,7 +1,7 @@
 
 import useAdmin from '../../hooks/useAdmin';
 import useSecureAxios from '../../hooks/useSecureAxios';
-import { Swal } from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 const CustomRequest = () => {
   const [ adminData ] = useAdmin();
@@ -31,7 +31,7 @@ const CustomRequest = () => {
       status: "pending"
     }
 
-    console.log(customReq);
+    // console.log(customReq);
 
 
     axiosSecure.post("/user/makeCustomRequest", customReq)
