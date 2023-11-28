@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useSecureAxios from "../../hooks/useSecureAxios";
 import useAdmin from "../../hooks/useAdmin";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 const CustomRequestList = () => {
   const axiosSecure = useSecureAxios();
@@ -9,7 +9,7 @@ const CustomRequestList = () => {
   const company = adminData?.user?.company;
   // console.log(company);
   const { data: allCustomRequests = [], isPending: isRequestLoading, 
-    // refetch 
+    refetch 
   } = useQuery({
     queryKey: ["allCustomRequests", company],
     enabled: !isAdminLoading,
@@ -25,18 +25,30 @@ const CustomRequestList = () => {
 
   console.log(allCustomRequests);
 
-  // const handleApproveRequest = (request) => {
-  //   // console.log(request);
-  //   axiosSecure.put(`/admin/approveRequest/${request.name}`).then(() => {
-  //     // console.log(res);
-  //     refetch();
-  //     Swal.fire({
-  //       icon: "success",
-  //       title: "Success",
-  //       text: "Successfully Processed the Request!",
-  //     });
-  //   });
-  // };
+  const handleApproveRequest = (request) => {
+    console.log(request);
+    const d = new Date();
+    const date = d.toISOString();
+    const newAsset = {
+      name: request.name,
+      type: request.type,
+      quantity: 1,
+      company: request.company,
+      added: date,
+      admin: adminData.user.email,
+      availibility: true
+    }
+    console.log(newAsset);
+    axiosSecure.put(`/admin/approveCustomRequest/${request.name}`, newAsset).then((res) => {
+      console.log(res);
+      refetch();
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Successfully Processed the Request!",
+      });
+    });
+  };
 
   // const handleRejectRequest = (request) => {
   //   axiosSecure.put(`/admin/rejectRequest/${request.name}`).then((res) => {
@@ -93,7 +105,7 @@ const CustomRequestList = () => {
             </h1>
             <div className="flex  gap-4 justify-center">
               <button
-                // onClick={() => handleApproveRequest(empl)}
+                onClick={() => handleApproveRequest(empl)}
                 type="button"
                 className="block w-32 hover:bg-black bg-blue-500 text-white p-2 rounded-xl"
                 disabled={empl.status !== "pending"}
