@@ -1,13 +1,55 @@
-import useAssets from "../../hooks/useAssets";
+// import useAssets from "../../hooks/useAssets";
+import { useState } from "react";
+import useSecureAxios from "../../hooks/useSecureAxios";
+import { useQuery } from "@tanstack/react-query";
+import useAdmin from "../../hooks/useAdmin";
 
 const RequestForAnAsset = () => {
-  const [allAssets] = useAssets();
-  console.log(allAssets);
+  // const [allAssets] = useAssets();
+  // console.log(allAssets);
+  const [name, setName] = useState("");
+  const axiosSecure = useSecureAxios();
+  const [adminData, isAdminLoading] = useAdmin();
+  const company = adminData?.user?.company;
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    // console.log(name);
+    setName(name);
+  };
+
+  const { data: allAssets = [], isPending: isAssetsLoading } = useQuery({
+    queryKey: ["allAssets", company, name],
+    enabled: !isAdminLoading,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/allAssets/${company}?name=${name}`);
+      return res.data;
+    },
+  });
+
+  if ( isAssetsLoading ) {
+    return <span>Loading...</span>
+  }
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 ml-2">
       <h1 className="font-bold text-center text-xl">Request For an Asset</h1>
       <h1 className="font-medium text-lg text-center">All Assets</h1>
+
+      <form onSubmit={handleSearch} className="flex">
+        <input
+          type="text"
+          name="name"
+          className="rounded-l-xl px-2 border-2"
+          placeholder="Enter Asset Name"
+        />
+        <button className="block bg-blue-500 text-white px-2 rounded-r-xl">
+          Search
+        </button>
+      </form>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
         {allAssets.map((asset) => (
           <div
