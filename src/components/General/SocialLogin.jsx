@@ -26,20 +26,24 @@ const SocialLogin = () => {
         birthday: date
       };
       // console.log(userInfo);
-      publicAxios.post("/users", userInfo).then(() => {
-        // console.log(res.data);
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "New User is created!",
-        });
-      }).catch(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Successful Sign In!",
-        });
-      });
+      publicAxios.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        if (res.data.insetedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "New User is created!",
+          });
+        }
+        else {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successful Sign In!",
+          });   
+        }
+        
+      })
       
       // logOut();
       navigate("/dashboard");
