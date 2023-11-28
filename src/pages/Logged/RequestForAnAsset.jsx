@@ -51,7 +51,7 @@ const RequestForAnAsset = () => {
       type: asset.type,
       requesterEmail: user.email,
       requesterName: user.displayName,
-      requesterCompany: company,
+       company,
       requestDate: date,
       additionalNotes,
       status: "pending"
