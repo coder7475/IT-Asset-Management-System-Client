@@ -36,14 +36,14 @@ const RequestForAnAsset = () => {
   }
 
   const handleRequesAsset = async(asset) => {
-    console.log(asset);
+    // console.log(asset);
     const { value: additionalNotes } = await Swal.fire({
       title: "Anything to Add?",
       input: "text",
       inputLabel: "Additional Notes",
     });
 
-    console.log(additionalNotes);
+    // console.log(additionalNotes);
     const d = new Date();
     const date = d.toISOString();
     const request = {
@@ -58,8 +58,13 @@ const RequestForAnAsset = () => {
     }
     // console.log(request);
     axiosSecure.post("/user/makeAssetRequest", request)
-      .then(res => {
-        console.log(res);
+      .then(() => {
+        // console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successful Request!",
+        });   
       })
   }
 
