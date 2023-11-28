@@ -15,12 +15,14 @@ const AddAnAsset = () => {
     const quantity = form.get("quantity");
     const d = new Date();
     const date = d.toISOString();
+    const company = adminData.user.company;
     const asset = {
       name,
       type,
       quantity,
-      company: adminData.company,
+      company,
       added: date,
+      
       availability: quantity > 0
     }
 
@@ -38,9 +40,9 @@ const AddAnAsset = () => {
   }
 
   return (
-    <div className="my-4 ml-4 min-h-screen max-w-2xl mx-auto">
-      <h1 className="font-bold text-xl">Add a new Asset to the Company</h1>
-      <form className="mt-4" onSubmit={handleAddAsset} >
+    <div className=" flex flex-col items-center">
+      <form className="mt-10" onSubmit={handleAddAsset} >
+      <h1 className="font-bold text-xl justify-center">Add a new Asset to the Company</h1>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Product Name
         </label>

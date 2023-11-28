@@ -42,7 +42,7 @@ const UserNavbar = ({ currentUser }) => {
           <NavLink to="/dashboard">My Assets</NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard">Request For an Asset</NavLink>
+          <NavLink to="/dashboard/requestForAnAsset">Request For an Asset</NavLink>
         </li>
         <li>
           <NavLink to="/dashboard/customRequest">My Custom Request</NavLink>
