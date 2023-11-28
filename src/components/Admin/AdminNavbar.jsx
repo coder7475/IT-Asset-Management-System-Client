@@ -50,7 +50,7 @@ const AdminNavbar = ({ currentUser }) => {
 
 
         <li>
-          <NavLink to="/dashboard">Add an Employee</NavLink>
+          <NavLink to="/dashboard/addAnEmployee">Add an Employee</NavLink>
         </li>
 
 
