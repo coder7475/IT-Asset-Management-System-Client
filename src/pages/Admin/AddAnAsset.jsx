@@ -1,6 +1,6 @@
 import useAdmin from '../../hooks/useAdmin';
 import useSecureAxios from '../../hooks/useSecureAxios';
-import { Swal } from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 const AddAnAsset = () => {
   const [ adminData ] = useAdmin();

@@ -46,9 +46,9 @@ const CustomRequest = () => {
   }
 
   return (
-    <div className="my-4 ml-4 min-h-screen max-w-2xl mx-auto">
+    <div  className="my-4 ml-4 min-h-screen max-w-2xl mx-auto">
       <h1 className="font-bold text-xl">Custom Request Form</h1>
-      <form className="mt-4" onSubmit={handleCustomRequest}>
+      <form className="mt-4 w-96" onSubmit={handleCustomRequest}>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Asset Name
         </label>
