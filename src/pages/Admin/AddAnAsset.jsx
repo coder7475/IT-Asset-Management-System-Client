@@ -16,13 +16,14 @@ const AddAnAsset = () => {
     const d = new Date();
     const date = d.toISOString();
     const company = adminData.user.company;
+    const adminEmail = adminData.user.email;
     const asset = {
       name,
       type,
       quantity,
       company,
       added: date,
-      
+      admin: adminEmail,
       availability: quantity > 0
     }
 

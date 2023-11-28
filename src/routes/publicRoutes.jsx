@@ -13,6 +13,7 @@ import EmpHome from '../pages/Logged/EmpHome';
 import CustomRequest from '../pages/Logged/CustomRequest';
 import AddAnEmployee from '../components/Admin/AddAnEmployee';
 import MyEmployeeList from '../pages/Admin/MyEmployeeList';
+import RequestForAnAsset from '../pages/Logged/RequestForAnAsset';
 
 const router = Router([
   {
@@ -60,6 +61,11 @@ const router = Router([
         path: "addAnEmployee",
         element: <AddAnEmployee/>
       },
+      {
+        path: "requestForAnAsset",
+        element: <RequestForAnAsset/>
+      }
+      ,
       // Admin routes
       {
         path: "adminHome",
