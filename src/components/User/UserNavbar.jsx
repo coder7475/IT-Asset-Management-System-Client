@@ -49,7 +49,7 @@ const UserNavbar = ({ currentUser }) => {
         </li>
 
         <li>
-          <NavLink to="/dashboard">Profile</NavLink>
+          <NavLink to="/dashboard/profile">Profile</NavLink>
         </li>
 
         <li className="italic underline">
