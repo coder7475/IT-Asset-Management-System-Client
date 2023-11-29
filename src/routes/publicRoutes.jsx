@@ -109,6 +109,10 @@ const router = Router([
           </AdminRoute>
         ),
       },
+      {
+        path: "adminProfile",
+        element: <h1>Hello</h1>
+      }
     ],
   },
 ]);
