@@ -48,11 +48,10 @@ const router = Router([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <PrivateRoute><Dashboard /> </PrivateRoute>,
     errorElement: (
-      <PrivateRoute>
+      
         <ErrorPage />
-      </PrivateRoute>
     ),
     children: [
       // Employee routes

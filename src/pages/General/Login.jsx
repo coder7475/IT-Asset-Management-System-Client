@@ -30,14 +30,14 @@ const Login = () => {
         });
       } else {
         logIn(values.email, values.password)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
             Swal.fire({
               icon: "success",
               title: "Success",
               text: "Successful Sign In!",
             });
-          navigate("/dashboard");
+          navigate("/dashboard/userHome");
 
           })
           .catch(() => {
