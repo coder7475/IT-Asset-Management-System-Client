@@ -1,15 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from '@tanstack/react-query';
 import useSecureAxios from './../../hooks/useSecureAxios';
+import useAdmin from '../../hooks/useAdmin';
+import Swal from 'sweetalert2';
 
 const UpdateAnAsset = () => {
   const assetId = useParams();
+  const [ adminData ] = useAdmin();
   const axiosSecure = useSecureAxios();
   // console.log(assetId.id);
+  
   const id = assetId.id;
   console.log(id);
-  const { data: oneAsset = [], isPending: isAssetLoading, refetch } = useQuery({
-    queryKey: ["allAssets", assetId],
+  const { data: oneAsset = [], isPending: isAssetLoading } = useQuery({
+    queryKey: ["oneAssets", assetId],
     queryFn: async () => {
       const res = await axiosSecure.get(`/admin/allAssets/${id}`);
       return res.data;
@@ -21,11 +25,43 @@ const UpdateAnAsset = () => {
   }
 
   console.log(oneAsset);
+  const handleUpdateAsset = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const type = form.get("type");
+    const quantity = form.get("quantity");
+    const d = new Date();
+    const date = d.toISOString();
+    const company = adminData.user.company;
+    const adminEmail = adminData.user.email;
+    const asset = {
+      name,
+      type,
+      quantity: parseInt(quantity),
+      company,
+      updated: date,
+      admin: adminEmail,
+      availability: quantity > 0
+    }
+
+    console.log(asset);
+
+    axiosSecure.patch(`/admin/updateAnAsset/${id}`, asset)
+      .then(() => {
+        // console.log(res.data);
+         Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successfully Updated!",
+        });
+      })
+  }
 
   return (
     <div className=" flex flex-col items-center">
-      <form className="mt-10"  >
-      <h1 className="font-bold text-xl justify-center">Update Asset</h1>
+      <form className="mt-10"  onSubmit={handleUpdateAsset}>
+      <h1 className="font-bold text-3xl mb-4 justify-center">Update Asset</h1>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Product Name
         </label>
