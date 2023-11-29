@@ -4,7 +4,8 @@ import Swal from "sweetalert2";
 import { NavLink } from 'react-router-dom';
 
 const AllAssetList = () => {
-  const [allAssets, isAssetsLoading, refetch] = useAssets();
+  // isAssetsLoading,
+  const [allAssets,  refetch] = useAssets();
   const axiosSecure = useSecureAxios();
   console.log(allAssets);
 
