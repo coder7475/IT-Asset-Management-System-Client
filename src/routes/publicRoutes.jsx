@@ -18,6 +18,7 @@ import AllRequestList from "../pages/Admin/AllRequestList";
 import CustomRequestList from "../pages/Admin/CustomRequestList";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import AllAssetList from '../pages/Admin/AllAssetList';
 
 const router = Router([
   {
@@ -78,6 +79,11 @@ const router = Router([
         path: "adminHome",
         element: <AdminRoute><AdminHome /></AdminRoute>,
       },
+      {
+        path: "assetList",
+        element: <AdminRoute><AllAssetList/></AdminRoute>
+      }
+      ,
       {
         path: "addAnAsset",
         element: <AdminRoute><AddAnAsset /></AdminRoute>,
