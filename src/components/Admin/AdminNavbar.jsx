@@ -58,7 +58,7 @@ const AdminNavbar = ({ currentUser }) => {
 
 
         <li>
-          <NavLink to="/dashboard/adminProfile">Profile</NavLink>
+          <NavLink to="/dashboard/profile">Profile</NavLink>
         </li>
 
 

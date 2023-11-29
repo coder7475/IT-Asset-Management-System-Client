@@ -20,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import AllAssetList from '../pages/Admin/AllAssetList';
 import UpdateAnAsset from '../pages/Admin/UpdateAnAsset';
+import Profile from '../pages/Admin/Profile';
 
 const router = Router([
   {
@@ -110,8 +111,8 @@ const router = Router([
         ),
       },
       {
-        path: "adminProfile",
-        element: <h1>Hello</h1>
+        path: "profile",
+        element: <Profile/>
       }
     ],
   },
