@@ -17,6 +17,7 @@ import RequestForAnAsset from "../pages/Logged/RequestForAnAsset";
 import AllRequestList from "../pages/Admin/AllRequestList";
 import CustomRequestList from "../pages/Admin/CustomRequestList";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = Router([
   {
@@ -48,11 +49,12 @@ const router = Router([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard /> </PrivateRoute>,
-    errorElement: (
-      
-        <ErrorPage />
+    element: (
+      <PrivateRoute>
+        <Dashboard />{" "}
+      </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       // Employee routes
       {
@@ -74,23 +76,27 @@ const router = Router([
       // Admin routes
       {
         path: "adminHome",
-        element: <AdminHome />,
+        element: <AdminRoute><AdminHome /></AdminRoute>,
       },
       {
         path: "addAnAsset",
-        element: <AddAnAsset />,
+        element: <AdminRoute><AddAnAsset /></AdminRoute>,
       },
       {
         path: "allRequestList",
-        element: <AllRequestList />,
+        element: <AdminRoute><AllRequestList /></AdminRoute>,
       },
       {
         path: "customRequestList",
-        element: <CustomRequestList />,
+        element: <AdminRoute><CustomRequestList /></AdminRoute>,
       },
       {
         path: "myEmployeeList",
-        element: <MyEmployeeList />,
+        element: (
+          <AdminRoute>
+            <MyEmployeeList />,
+          </AdminRoute>
+        ),
       },
     ],
   },

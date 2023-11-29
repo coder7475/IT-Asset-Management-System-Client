@@ -119,7 +119,7 @@ const CheckoutForm = () => {
         axiosSecure.post("/payments", payment).then((res) => {
           // TODO: SHow sweet alert and navigate to dashboard
           console.log(res);
-          navigate("/dashboard");
+          navigate("/dashboard/adminHome");
           Swal.fire({
             icon: "success",
             title: "Success",
