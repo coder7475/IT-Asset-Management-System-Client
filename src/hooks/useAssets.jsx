@@ -7,7 +7,7 @@ const useAssets = () => {
   const [ adminData, isAdminLoading ] = useAdmin();
   const company = adminData?.user?.company;
 
-  const { data: allAssets = [], isPending: isAssetsLoading } = useQuery({
+  const { data: allAssets = [], isPending: isAssetsLoading, refetch } = useQuery({
     queryKey: ["allAssets", company],
     enabled: !isAdminLoading,
     queryFn: async () => {
@@ -16,7 +16,7 @@ const useAssets = () => {
     },
   });
 
-  return [allAssets, isAssetsLoading];
+  return [allAssets, isAssetsLoading, refetch];
 };
 
 export default useAssets;
