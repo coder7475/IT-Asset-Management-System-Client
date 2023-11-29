@@ -19,6 +19,7 @@ import CustomRequestList from "../pages/Admin/CustomRequestList";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import AllAssetList from '../pages/Admin/AllAssetList';
+import UpdateAnAsset from '../pages/Admin/UpdateAnAsset';
 
 const router = Router([
   {
@@ -82,6 +83,10 @@ const router = Router([
       {
         path: "assetList",
         element: <AdminRoute><AllAssetList/></AdminRoute>
+      },
+      {
+        path: "/dashboard/assetList/:id",
+        element: <UpdateAnAsset/>
       }
       ,
       {

@@ -1,6 +1,7 @@
 import useAssets from "../../hooks/useAssets";
 import useSecureAxios from '../../hooks/useSecureAxios';
 import Swal from "sweetalert2";
+import { NavLink } from 'react-router-dom';
 
 const AllAssetList = () => {
   const [allAssets, isAssetsLoading, refetch] = useAssets();
@@ -48,12 +49,15 @@ const AllAssetList = () => {
               <span className="font-semibold">Date Added:</span> {empl.added.split("T")[0]}
             </h1>
             <div className="flex  gap-4 justify-center">
+              <NavLink to={`/dashboard/assetList/${empl._id}`}>
+
               <button
                 type="button"
                 className="block w-32 hover:bg-black bg-blue-500 text-white p-2 rounded-xl"
-              >
+                >
                 Update
               </button>
+                </NavLink>
               <button
                 onClick={() => handleAssetDelete(empl)}
                 type="button"
