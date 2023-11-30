@@ -38,7 +38,8 @@ const Login = () => {
               title: "Success",
               text: "Successful Sign In!",
             });
-            navigate("/dashboard/userHome");
+
+            navigate("/dashboard");
           })
           .catch(() => {
             Swal.fire({
