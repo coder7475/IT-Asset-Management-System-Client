@@ -5,8 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
   const [adminData] = useAdmin();
-  console.log(adminData);
-
+ 
   return <div className="flex">
     <div className="w-64 min-h-screen bg-slate-600 text-white">
       {

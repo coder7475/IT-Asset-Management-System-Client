@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const Profile = () => {
   const [adminData] = useAdmin();
   const axiosSecure = useSecureAxios();
-  console.log(adminData.user);
+  // console.log(adminData.user);
 
   const handleProfileUpdate = (e) => {
     e.preventDefault();

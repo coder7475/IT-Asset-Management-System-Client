@@ -65,6 +65,14 @@ const router = Router([
         element: <EmpHome />,
       },
       {
+        path: "myTeam",
+        element: <h1>my team</h1>
+      },
+      {
+        path: "myAssets",
+        element: <h1>my asset</h1>
+      },
+      {
         path: "customRequest",
         element: <CustomRequest />,
       },

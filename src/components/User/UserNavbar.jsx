@@ -36,10 +36,10 @@ const UserNavbar = ({ currentUser }) => {
           <NavLink to="/dashboard/userHome">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard">My Team</NavLink>
+          <NavLink to="/dashboard/myTeam">My Team</NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard">My Assets</NavLink>
+          <NavLink to="/dashboard/myAssets">My Assets</NavLink>
         </li>
         <li>
           <NavLink to="/dashboard/requestForAnAsset">Request For an Asset</NavLink>
