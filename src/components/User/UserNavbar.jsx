@@ -1,12 +1,15 @@
 import PropTypes from "prop-types"
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from './../../hooks/useAdmin';
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UserNavbar = ({ currentUser }) => {
   const { logOut, user } = useAuth();
   const navigate = useNavigate();
+  const [ adminData ] = useAdmin();
+  console.log(adminData);
   // console.log(currentUser);
   const handleLogOut = () => {
     // console.log("clicked Logout");
@@ -52,14 +55,11 @@ const UserNavbar = ({ currentUser }) => {
           <NavLink to="/dashboard/profile">Profile</NavLink>
         </li>
         <li>
-        <div className="w-12 h-12 rounded-full">
-          <img src={user?.photoURL} alt="Avatar" />
-        </div>
-        </li>
-        <li className="italic underline">
+        <div className="flex items-center gap-2">
+          <img src={adminData?.user?.photoURL || user?.photoURL} alt="Avatar"  className="w-12 h-12 rounded-full"/>
           {currentUser?.name}
-        </li>
-
+        </div>
+        </li>       
         <li>
           <button onClick={handleLogOut}>Log Out</button>
         </li>

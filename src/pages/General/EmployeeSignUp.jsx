@@ -16,13 +16,14 @@ const EmployeeSignUp = () => {
     initialValues: {
       employeeName: "",
       email: "",
+      photoURL: "",
       password: "",
       date: "",
     },
 
     onSubmit: (values) => {
       // console.log(values);
-      const re = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/g;
+      const re = /(?=.*[A-Z])(?=.*[\W_]).{6,}/g;
       const valid = re.test(values.password);
       // console.log(valid);
       if (!valid) {
@@ -30,7 +31,7 @@ const EmployeeSignUp = () => {
           icon: "error",
           title: "Oops...",
           text: "Invalid Password!",
-          footer: "Minimum six characters, at least one letter and one number"
+          footer: "Minimum six characters, at least one lowercase, one uppercase letter, one special character and one number"
         });
       } else {
         createUser(values.email, values.password).then(() => {
@@ -39,25 +40,26 @@ const EmployeeSignUp = () => {
           const userInfo = {
             name: values.employeeName,
             email: values.email,
+            photoURL: values.photoURL,
             birthday: values.date,
           };
           // console.log(userInfo);
           publicAxios.post("/users", userInfo).then(() => {
             // console.log(res.data);
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Successful Sign In!",
+            });
+            // logOut();
+            navigate("/dashboard/userHome");
           });
 
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Successful Sign In!",
-          });
-          // logOut();
-          navigate("/dashboard");
+          
         });
       }
     },
-  }
-  );
+  });
   return (
     <main>
       <GeneralNavbar />
@@ -79,6 +81,17 @@ const EmployeeSignUp = () => {
             id="employeeName"
             className="border-2 rounded-lg border-blue-500"
             placeholder=" Enter Your Full Name"
+          />
+
+          <label htmlFor="photoURL"  className="font-sans font-medium mt-1">Profile Image</label>
+          <input
+            onChange={formik.handleChange}
+            value={formik.values.photoURL}
+            type="text"
+            name="photoURL"
+            id="photoURL"
+            className="border-2 rounded-lg border-blue-500"
+            placeholder=" Enter Your Photo URL"
           />
 
           <label htmlFor="email" className="font-sans font-medium mt-2">

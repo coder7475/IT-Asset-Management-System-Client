@@ -45,7 +45,7 @@ const AdminSignUp = () => {
           icon: "error",
           title: "Oops...",
           text: "Invalid Password!",
-          footer: "Minimum six characters, at least one letter and one number"
+          footer: "Minimum six characters, at least one lowercase, one uppercase letter, one special character and one number"
         });
       } 
       else 
@@ -123,7 +123,7 @@ const AdminSignUp = () => {
             placeholder=" Enter Your Full Name"
           />
 
-          <label htmlFor="photoURL">Profile Image</label>
+          <label htmlFor="photoURL"  className="font-sans font-medium mt-1">Profile Image</label>
           <input
             onChange={formik.handleChange}
             value={formik.values.photoURL}
