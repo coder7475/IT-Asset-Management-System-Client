@@ -6,16 +6,16 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { createContext, useState, useEffect } from "react";
-
+import useSecureAxios from './../../../hooks/useSecureAxios';
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const axiosSecure = useSecureAxios();
   // obserber of user state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -23,20 +23,26 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log(currentUser);
       setLoading(false);
+      const userEmail = currentUser?.email || user?.email;
+      const payload = { email: userEmail };
+
       if (currentUser) {
         // User is signed in
 
-        console.log(currentUser);
-        // ...
+        axiosSecure.post("/create-token", payload).then(() => {
+          // console.log("Token response: ", res.data);
+        });
       } else {
         // User is signed out
-        // ...
+        axiosSecure.get("/clear-token").then(() => {
+          // cleared token
+        })
       }
     });
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [axiosSecure, user?.email]);
 
   const provider = new GoogleAuthProvider();
   const googleSignIn = () => {
@@ -58,7 +64,7 @@ const AuthProvider = ({ children }) => {
   const logIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-}
+  };
 
   const authInfo = {
     user,
@@ -66,7 +72,7 @@ const AuthProvider = ({ children }) => {
     googleSignIn,
     createUser,
     logOut,
-    logIn
+    logIn,
   };
 
   return (
