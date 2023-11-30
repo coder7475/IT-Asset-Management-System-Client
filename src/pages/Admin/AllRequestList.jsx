@@ -24,7 +24,7 @@ const AllRequestList = () => {
     return <span>Loading...</span>;
   }
 
-  console.log(allRequests);
+  // console.log(allRequests);
 
   const handleApproveRequest = (request) => {
     // console.log(request);

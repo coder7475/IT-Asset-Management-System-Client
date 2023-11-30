@@ -25,6 +25,7 @@ const AddAnAsset = () => {
       company,
       added: date,
       admin: adminEmail,
+      requested: 0,
       availability: quantity > 0
     }
 
