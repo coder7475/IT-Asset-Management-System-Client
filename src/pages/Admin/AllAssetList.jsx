@@ -8,7 +8,7 @@ const AllAssetList = () => {
   // isAssetsLoading,
   const [allAssets,  refetch] = useAssets();
   const axiosSecure = useSecureAxios();
-  console.log(allAssets);
+  // console.log(allAssets);
 
   const handleAssetDelete = (asset) => {
     // console.log(asset);

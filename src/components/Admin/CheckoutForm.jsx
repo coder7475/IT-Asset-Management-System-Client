@@ -15,7 +15,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const { user } = useAuth();
   const navigate = useNavigate();
-  console.log(user);
+  // console.log(user);
   const [adminData, isAdminLoading] = useAdmin();
   const axiosSecure = useSecureAxios();
   // console.log(adminData?.user?.package);
@@ -28,7 +28,7 @@ const CheckoutForm = () => {
     0
   );
   // console.log(unpaidPackages);
-  console.log(totalPrice);
+  // console.log(totalPrice);
   // console.log(elements);
 
   useEffect(() => {
@@ -36,13 +36,13 @@ const CheckoutForm = () => {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
+          // console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
   }, [axiosSecure, totalPrice]);
 
-  console.log(clientSecret);
+  // console.log(clientSecret);
 
   if (isAdminLoading) {
     return <span>Loading...</span>;
@@ -61,16 +61,17 @@ const CheckoutForm = () => {
       return;
     }
 
+    // eslint-disable-next-line no-unused-vars
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (error) {
-      console.log("payment error", error);
+      // console.log("payment error", error);
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
+      // console.log("payment method", paymentMethod);
       setError("");
     }
 
@@ -87,13 +88,13 @@ const CheckoutForm = () => {
       });
 
     if (confirmError) {
-      console.log("confirm error");
+      // console.log("confirm error");
     } else {
       // successful payment
-      console.log("payment intent", paymentIntent);
+      // console.log("payment intent", paymentIntent);
 
       if (paymentIntent.status === "succeeded") {
-        console.log("transaction id", paymentIntent.id);
+        // console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
         // update the package status
@@ -103,8 +104,8 @@ const CheckoutForm = () => {
         console.log(updatedPackages);
         axiosSecure
           .patch(`/users/admin/${user.email}`, updatedPackages)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
           });
 
         // save payment history in databse
@@ -116,9 +117,8 @@ const CheckoutForm = () => {
           date: d.toISOString(), // utc date convert. use moment js to
         };
 
-        axiosSecure.post("/payments", payment).then((res) => {
-          // TODO: SHow sweet alert and navigate to dashboard
-          console.log(res);
+        axiosSecure.post("/payments", payment).then(() => {
+          // console.log(res);
           navigate("/dashboard/adminHome");
           Swal.fire({
             icon: "success",

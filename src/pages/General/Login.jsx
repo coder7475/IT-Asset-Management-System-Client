@@ -18,7 +18,7 @@ const Login = () => {
     },
 
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       const re = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/g;
       const valid = re.test(values.password);
       // console.log(valid);

@@ -24,10 +24,10 @@ const CustomRequestList = () => {
     return <span>Loading...</span>;
   }
 
-  console.log(allCustomRequests);
+  // console.log(allCustomRequests);
 
   const handleApproveRequest = (request) => {
-    console.log(request);
+    // console.log(request);
     const d = new Date();
     const date = d.toISOString();
     const newAsset = {
@@ -39,9 +39,9 @@ const CustomRequestList = () => {
       admin: adminData.user.email,
       availibility: true
     }
-    console.log(newAsset);
-    axiosSecure.put(`/admin/approveCustomRequest/${request.name}`, newAsset).then((res) => {
-      console.log(res);
+    // console.log(newAsset);
+    axiosSecure.put(`/admin/approveCustomRequest/${request.name}`, newAsset).then(() => {
+      // console.log(res);
       refetch();
       Swal.fire({
         icon: "success",
@@ -52,10 +52,10 @@ const CustomRequestList = () => {
   };
 
   const handleRejectRequest = (request) => {
-    console.log(request.name);
+    // console.log(request.name);
     axiosSecure.put(`/admin/rejectCustomRequest/${request.name}`)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      // console.log(res);
       refetch();
       Swal.fire({
         icon: "error",

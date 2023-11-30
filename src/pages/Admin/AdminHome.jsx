@@ -9,7 +9,7 @@ const defaultLabelStyle = {
 
 const AdminHome = () => {
   const [adminHomeData, isadminHomeLoading] = useAdminHome();
-  console.log(adminHomeData);
+  // console.log(adminHomeData);
   const {
     pendingRequests,
     topRequestedItems,

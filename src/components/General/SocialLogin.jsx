@@ -28,7 +28,7 @@ const SocialLogin = () => {
       };
       // console.log(userInfo);
       publicAxios.post("/users", userInfo).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.insetedId) {
           Swal.fire({
             icon: "success",
@@ -47,7 +47,7 @@ const SocialLogin = () => {
       })
       
       // logOut();
-      navigate("/dashboard/userHome");
+      navigate("/dashboard");
     });
   };
 

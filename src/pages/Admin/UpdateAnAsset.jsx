@@ -12,7 +12,7 @@ const UpdateAnAsset = () => {
   // console.log(assetId.id);
   
   const id = assetId.id;
-  console.log(id);
+  // console.log(id);
   const { data: oneAsset = [], isPending: isAssetLoading } = useQuery({
     queryKey: ["oneAssets", assetId],
     queryFn: async () => {
@@ -25,7 +25,7 @@ const UpdateAnAsset = () => {
     return <span>Loading....</span>
   }
 
-  console.log(oneAsset);
+  // console.log(oneAsset);
   const handleUpdateAsset = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -46,7 +46,7 @@ const UpdateAnAsset = () => {
       availability: quantity > 0
     }
 
-    console.log(asset);
+    // console.log(asset);
 
     axiosSecure.patch(`/admin/updateAnAsset/${id}`, asset)
       .then(() => {

@@ -19,7 +19,7 @@ const Profile = () => {
       email,
       birthday: date,
     };
-    console.log(updatedDoc);
+    // console.log(updatedDoc);
 
     axiosSecure
       .patch(`/updateProfile/${email}`, updatedDoc)

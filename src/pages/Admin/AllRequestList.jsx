@@ -40,8 +40,8 @@ const AllRequestList = () => {
   };
 
   const handleRejectRequest = (request) => {
-    axiosSecure.put(`/admin/rejectRequest/${request.name}`).then((res) => {
-      console.log(res);
+    axiosSecure.put(`/admin/rejectRequest/${request.name}`).then(() => {
+      // console.log(res);
       refetch();
       Swal.fire({
         icon: "error",
@@ -57,7 +57,7 @@ const AllRequestList = () => {
     const form = new FormData(e.currentTarget);
     const value = form.get("title");
     // console.log(value);
-    console.log("clicked");
+    // console.log("clicked");
     setSearch(value);
   }
 

@@ -18,7 +18,7 @@ const AddAnEmployee = () => {
   const navigate = useNavigate();
 
   const handleAddMember = (employee) => {
-    console.log(employee);
+    // console.log(employee);
     const id = employee._id;
     const updated = {
       role: "employee",

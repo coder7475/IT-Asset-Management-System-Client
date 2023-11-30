@@ -46,7 +46,7 @@ const AdminSignUp = () => {
     },
 
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       const re = /(?=.*[A-Z])(?=.*[\W_]).{6,}/g;
       const valid = re.test(values.password);
       if (!valid) {
@@ -58,8 +58,8 @@ const AdminSignUp = () => {
             "Minimum six characters, at least one lowercase, one uppercase letter, one special character and one number",
         });
       } else {
-        createUser(values.email, values.password).then((result) => {
-          console.log(result);
+        createUser(values.email, values.password).then(() => {
+          // console.log(result);
           // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
           const userInfo = {
             role: "admin",
@@ -72,7 +72,7 @@ const AdminSignUp = () => {
             package: [selectedOption],
           };
 
-          console.log(userInfo);
+          // console.log(userInfo);
 
           publicAxios.post("/users", userInfo).then(() => {
             // console.log(res.data);

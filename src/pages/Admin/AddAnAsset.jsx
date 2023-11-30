@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 
 const AddAnAsset = () => {
   const [ adminData ] = useAdmin();
-  console.log(adminData);
+  // console.log(adminData);
   const axiosSecure = useSecureAxios();
 
   const handleAddAsset = (e) => {

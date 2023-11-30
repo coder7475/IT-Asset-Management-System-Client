@@ -53,7 +53,7 @@ const EmployeeSignUp = () => {
               text: "Successful Sign In!",
             });
             // logOut();
-            navigate("/dashboard/userHome");
+            navigate("/dashboard");
           });
 
           

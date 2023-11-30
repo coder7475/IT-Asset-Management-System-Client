@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log("user in the auth state changed", currentUser);
       setUser(currentUser);
-      console.log(currentUser);
+      // console.log(currentUser);
       setLoading(false);
       const userEmail = currentUser?.email || user?.email;
       const payload = { email: userEmail };
@@ -29,8 +29,8 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         // User is signed in
 
-        axiosSecure.post("/create-token", payload).then((res) => {
-          console.log("Token response: ", res.data);
+        axiosSecure.post("/create-token", payload).then(() => {
+          // console.log("Token response: ", res.data);
         });
       } else {
         // User is signed out
