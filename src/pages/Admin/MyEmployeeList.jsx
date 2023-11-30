@@ -43,6 +43,7 @@ const MyEmployeeList = () => {
           onClick={() => handleRemoveMember(empl)}
           key={empl._id} 
           className="border-2 p-2 rounded-lg text-center space-y-2 bg-gray-200"  >
+            <img src={empl?.photoURL} alt="Employee Image" className="w-full h-24"/>
             <h1> <span className="font-semibold">Name:</span>  {empl.name}</h1>
             <button type="button" className="block bg-blue-500 text-white p-2 rounded-xl" >
               Remove from Team
