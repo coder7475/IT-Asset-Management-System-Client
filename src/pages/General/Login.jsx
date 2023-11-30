@@ -73,7 +73,7 @@ const Login = () => {
             type="email"
             name="email"
             id="email"
-            className="border-2 rounded-lg border-blue-500"
+            className="border-2 rounded-lg border-blue-500 p-1"
             placeholder=" Enter Your Email"
           />
 
@@ -86,7 +86,7 @@ const Login = () => {
             type="password"
             name="password"
             id="password"
-            className="border-2 rounded-lg border-blue-500"
+            className="border-2 rounded-lg border-blue-500 p-1"
             placeholder=" Password"
           />
 

@@ -5,9 +5,9 @@ import useAdmin from "./useAdmin";
 
 const useAdminHome = () => {
   const axiosSecure = useSecureAxios();
-  const [adminData] = useAdmin();
+  const [adminData = []] = useAdmin();
   const company = adminData?.user?.company;
-  
+
   const { data: adminHomeData = [], isPending: isadminHomeLoading } = useQuery({
     queryKey: ["adminHomeStatus"],
     queryFn: async () => {
