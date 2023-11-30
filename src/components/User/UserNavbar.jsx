@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UserNavbar = ({ currentUser }) => {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const navigate = useNavigate();
-  console.log(currentUser);
+  // console.log(currentUser);
   const handleLogOut = () => {
     // console.log("clicked Logout");
     logOut().then(() => {
@@ -51,7 +51,11 @@ const UserNavbar = ({ currentUser }) => {
         <li>
           <NavLink to="/dashboard/profile">Profile</NavLink>
         </li>
-
+        <li>
+        <div className="w-12 h-12 rounded-full">
+          <img src={user?.photoURL} alt="Avatar" />
+        </div>
+        </li>
         <li className="italic underline">
           {currentUser?.name}
         </li>

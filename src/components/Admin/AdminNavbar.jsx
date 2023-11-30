@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import useAdmin from '../../hooks/useAdmin';
 
 const AdminNavbar = ({ currentUser }) => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
-
+  const [adminData] = useAdmin();
   const handleLogOut = () => {
     // console.log("clicked Logout");
     logOut()
@@ -60,11 +61,14 @@ const AdminNavbar = ({ currentUser }) => {
         <li>
           <NavLink to="/dashboard/profile">Profile</NavLink>
         </li>
-
-
-        <li className="italic underline">
+        <li className="flex gap-2 items-center"> 
+        
+          <img src={adminData.user?.photoURL} alt="Avatar"  className="w-12 h-12 rounded-full"/>
           {currentUser?.name}
+        
         </li>
+
+        
         <li>
           <button  onClick={handleLogOut}>
             

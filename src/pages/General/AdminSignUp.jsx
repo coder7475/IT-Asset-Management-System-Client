@@ -30,6 +30,7 @@ const AdminSignUp = () => {
       adminName: "",
       companyName: "",
       email: "",
+      photoURL: "",
       // companyLogo: "",
       password: "",
       date: "",
@@ -37,7 +38,7 @@ const AdminSignUp = () => {
 
     onSubmit: (values) => {
       console.log(values);
-      const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g;
+      const re = /(?=.*[A-Z])(?=.*[\W_]).{6,}/g;
       const valid = re.test(values.password);
       if (!valid) {
         Swal.fire({
@@ -59,6 +60,7 @@ const AdminSignUp = () => {
             name: values.adminName,
             company: values.companyName,
             email: values.email,
+            photoURL: values.photoURL,
             birthday: values.date,
             companyLogo: image,
             package: [selectedOption]
@@ -73,7 +75,7 @@ const AdminSignUp = () => {
           Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Successful Sign In!",
+            text: "Successful Admin Registration!",
           });
           // logOut();
 
@@ -121,6 +123,17 @@ const AdminSignUp = () => {
             placeholder=" Enter Your Full Name"
           />
 
+          <label htmlFor="photoURL">Profile Image</label>
+          <input
+            onChange={formik.handleChange}
+            value={formik.values.photoURL}
+            type="text"
+            name="photoURL"
+            id="photoURL"
+            className="border-2 rounded-lg border-blue-500"
+            placeholder=" Enter Your Photo URL"
+          />
+
           <label htmlFor="companyName" className="font-sans font-medium mt-2">
             Company Name
           </label>
@@ -147,7 +160,7 @@ const AdminSignUp = () => {
             id="companyLogo"
             className="border-2 rounded-lg border-blue-500"
           />
-
+          
           <label htmlFor="email" className="font-sans font-medium mt-2">
             Email
           </label>
