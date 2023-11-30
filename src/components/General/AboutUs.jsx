@@ -17,7 +17,7 @@ const AboutUs = () => {
           <img
             // className="object-cover object-center rounded"
             alt="hero"
-            src="src/assets/aboutUs/aboutUS.jpg"
+            src="/aboutUS.jpg"
           />
         </div>
       </div>
