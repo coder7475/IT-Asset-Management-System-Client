@@ -6,13 +6,22 @@ import usePublicAxios from "../../hooks/usePublicAxios";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const options = [
-  { value: { price: 5, members: 5, status: 'unpaid' }, label: "Maximum 5 employees: $5" },
-  { value: { price: 8, members: 10, status: 'unpaid' }, label: "Maximum 10 employees: $8" },
-  { value: { price: 15, members: 20, status: 'unpaid' }, label: "Maximum 20 employees: $15" },
+  {
+    value: { price: 5, members: 5, status: "unpaid" },
+    label: "Maximum 5 employees: $5",
+  },
+  {
+    value: { price: 8, members: 10, status: "unpaid" },
+    label: "Maximum 10 employees: $8",
+  },
+  {
+    value: { price: 15, members: 20, status: "unpaid" },
+    label: "Maximum 20 employees: $15",
+  },
 ];
-
 
 const imgHostingKey = import.meta.env.VITE_IMGBB_KEY;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
@@ -21,7 +30,7 @@ const AdminSignUp = () => {
   const { createUser } = useAuth();
   const [selectedOption, setSelectedOption] = useState(null);
   const publicAxios = usePublicAxios();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   // console.log(image);
   // console.log(selectedOption);
 
@@ -45,14 +54,11 @@ const AdminSignUp = () => {
           icon: "error",
           title: "Oops...",
           text: "Invalid Password!",
-          footer: "Minimum six characters, at least one lowercase, one uppercase letter, one special character and one number"
+          footer:
+            "Minimum six characters, at least one lowercase, one uppercase letter, one special character and one number",
         });
-      } 
-      else 
-      {
-
-        createUser(values.email, values.password)
-        .then((result) => {
+      } else {
+        createUser(values.email, values.password).then((result) => {
           console.log(result);
           // ?DONE: Create the user obj and send it to databse to store in users collection if the user does not exits
           const userInfo = {
@@ -63,7 +69,7 @@ const AdminSignUp = () => {
             photoURL: values.photoURL,
             birthday: values.date,
             companyLogo: image,
-            package: [selectedOption]
+            package: [selectedOption],
           };
 
           console.log(userInfo);
@@ -103,6 +109,9 @@ const AdminSignUp = () => {
 
   return (
     <main>
+      <Helmet>
+        <title>AssetIT | Admin SignUP</title>
+      </Helmet>
       <GeneralNavbar />
       <div className="mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
         <h1 className="text-xl md:text-3xl font-medium md:font-bold">
@@ -123,7 +132,9 @@ const AdminSignUp = () => {
             placeholder=" Enter Your Full Name"
           />
 
-          <label htmlFor="photoURL"  className="font-sans font-medium mt-1">Profile Image</label>
+          <label htmlFor="photoURL" className="font-sans font-medium mt-1">
+            Profile Image
+          </label>
           <input
             onChange={formik.handleChange}
             value={formik.values.photoURL}
@@ -160,7 +171,7 @@ const AdminSignUp = () => {
             id="companyLogo"
             className="border-2 rounded-lg border-blue-500"
           />
-          
+
           <label htmlFor="email" className="font-sans font-medium mt-2">
             Email
           </label>

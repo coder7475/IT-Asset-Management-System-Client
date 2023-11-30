@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import usePublicAxios from "../../hooks/usePublicAxios";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 const EmployeeSignUp = () => {
   const { createUser } = useAuth();
@@ -62,6 +63,9 @@ const EmployeeSignUp = () => {
   });
   return (
     <main>
+      <Helmet>
+        <title>AssetIT | Employee SignUP</title>
+      </Helmet>
       <GeneralNavbar />
       <div className=" mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
         <h1 className=" text-xl md:text-3xl font-medium md:font-bold">

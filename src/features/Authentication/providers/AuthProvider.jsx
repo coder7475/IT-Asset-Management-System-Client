@@ -29,8 +29,8 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         // User is signed in
 
-        axiosSecure.post("/create-token", payload).then(() => {
-          // console.log("Token response: ", res.data);
+        axiosSecure.post("/create-token", payload).then((res) => {
+          console.log("Token response: ", res.data);
         });
       } else {
         // User is signed out

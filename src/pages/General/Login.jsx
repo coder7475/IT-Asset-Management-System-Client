@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 import useAuth from "../../hooks/useAuth";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { logIn } = useAuth();
@@ -37,8 +38,7 @@ const Login = () => {
               title: "Success",
               text: "Successful Sign In!",
             });
-          navigate("/dashboard/userHome");
-
+            navigate("/dashboard/userHome");
           })
           .catch(() => {
             Swal.fire({
@@ -53,6 +53,9 @@ const Login = () => {
 
   return (
     <main>
+      <Helmet>
+        <title>AssetIT | Login</title>
+      </Helmet>
       <GeneralNavbar />
       <div className=" mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
         <h1 className="text-center text-xl md:text-3xl font-medium md:font-bold">
