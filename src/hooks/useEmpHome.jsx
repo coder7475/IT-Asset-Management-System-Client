@@ -5,18 +5,18 @@ import useAdmin from "./useAdmin";
 
 const useEmpHome = () => {
   const axiosSecure = useSecureAxios();
-  const [adminData = []] = useAdmin();
+  const [adminData ] = useAdmin();
   const company = adminData?.user?.email;
 
-  const { data: adminHomeData = [], isPending: isadminHomeLoading } = useQuery({
+  const { data: employeeHomeData = [], isPending: isEmployeeHomeLoading } = useQuery({
     queryKey: ["adminHomeStatus"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/admin/homeStatus/${company}`);
+      const res = await axiosSecure.get(`/user/homeStats/${company}`);
       return res.data;
     },
   });
 
-  return [adminHomeData, isadminHomeLoading];
+  return [employeeHomeData, isEmployeeHomeLoading];
 };
 
 export default useEmpHome;

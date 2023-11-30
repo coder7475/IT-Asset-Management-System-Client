@@ -1,10 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import useAdmin from '../../hooks/useAdmin';
+import useEmpHome from '../../hooks/useEmpHome';
 
 const EmpHome = () => {
   const [ adminData ] = useAdmin();
-  console.log(adminData);
+  const [ employeeHomeData ] = useEmpHome();
   
+  console.log(adminData);
+  console.log(employeeHomeData);
+
   return (
     <div>
       <Helmet>
