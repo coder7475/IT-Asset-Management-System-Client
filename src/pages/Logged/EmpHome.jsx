@@ -4,7 +4,7 @@ import useAdmin from '../../hooks/useAdmin';
 const EmpHome = () => {
   const [ adminData ] = useAdmin();
   console.log(adminData);
-
+  
   return (
     <div>
       <Helmet>

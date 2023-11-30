@@ -19,9 +19,14 @@ const CustomRequest = () => {
     const addInfo = form.get("addInfo");
     const d = new Date();
     const date = d.toISOString();
-    const company = adminData.user.company;
+    const company = adminData?.user?.company;
+    const requesterEmail = adminData?.user?.email;
+    const requesterName = adminData?.user?.name;
+
     const customReq = {
       name,
+      requesterEmail,
+      requesterName,
       price,
       type,
       image,
@@ -47,12 +52,12 @@ const CustomRequest = () => {
   }
 
   return (
-    <div  className="my-4 ml-4 min-h-screen max-w-2xl mx-auto">
+    <div  className="flex flex-col flex-1 justify-center items-center gap-3">
       <Helmet>
         <title>AssetIT | Make Custom Request</title>
       </Helmet>
       <h1 className="font-bold text-xl">Custom Request Form</h1>
-      <form className="mt-4 w-96" onSubmit={handleCustomRequest}>
+      <form className="mt-4" onSubmit={handleCustomRequest}>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Asset Name
         </label>
