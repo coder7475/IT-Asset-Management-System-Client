@@ -9,7 +9,7 @@ const UserNavbar = ({ currentUser }) => {
   const { logOut, user } = useAuth();
   const navigate = useNavigate();
   const [ adminData ] = useAdmin();
-  console.log(adminData);
+  // console.log(adminData);
   // console.log(currentUser);
   const handleLogOut = () => {
     // console.log("clicked Logout");
@@ -31,7 +31,8 @@ const UserNavbar = ({ currentUser }) => {
             <img
               src={currentUser?.companyLogo}
               alt="company Logo"
-              width="80px"
+              // width="80px"
+              className="w-14 rounded-xl"
             />
           </NavLink>
         </li>
