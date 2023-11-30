@@ -1,6 +1,7 @@
 import useAdmin from '../../hooks/useAdmin';
 import useSecureAxios from '../../hooks/useSecureAxios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AddAnAsset = () => {
   const [ adminData ] = useAdmin();
@@ -42,6 +43,9 @@ const AddAnAsset = () => {
 
   return (
     <div className=" flex flex-col items-center">
+      <Helmet>
+        <title>AssetIT | Add An Asset</title>
+      </Helmet>
       <form className="mt-10" onSubmit={handleAddAsset} >
       <h1 className="font-bold text-xl justify-center">Add a new Asset to the Company</h1>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">

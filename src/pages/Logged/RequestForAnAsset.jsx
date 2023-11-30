@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAdmin from "../../hooks/useAdmin";
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const RequestForAnAsset = () => {
   // const [allAssets] = useAssets();
@@ -70,6 +71,10 @@ const RequestForAnAsset = () => {
 
   return (
     <div className="mt-4 ml-2">
+      <Helmet>
+        <title>AssetIT | Request Asset</title>
+      </Helmet>
+
       <h1 className="font-bold text-center text-xl">Request For an Asset</h1>
       <h1 className="font-medium text-lg text-center">All Assets</h1>
 

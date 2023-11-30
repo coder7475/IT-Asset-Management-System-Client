@@ -4,6 +4,7 @@ import useSecureAxios from '../../hooks/useSecureAxios';
 import Swal from 'sweetalert2';
 import useUsers from '../../hooks/useUsers';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AddAnEmployee = () => {
   const [allUsers ] = useUsers();
@@ -40,6 +41,9 @@ const AddAnEmployee = () => {
 
   return (
     <div className="ml-4">
+      <Helmet>
+        <title>AssetIT | Add An Employee</title>
+      </Helmet>
       <h1 className="text-center text-2xl font-bold mt-4">Add an Employee</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
         {employees.map((empl) => (

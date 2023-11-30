@@ -2,6 +2,7 @@
 import useAdmin from '../../hooks/useAdmin';
 import useSecureAxios from '../../hooks/useSecureAxios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const CustomRequest = () => {
   const [ adminData ] = useAdmin();
@@ -47,6 +48,9 @@ const CustomRequest = () => {
 
   return (
     <div  className="my-4 ml-4 min-h-screen max-w-2xl mx-auto">
+      <Helmet>
+        <title>AssetIT | Make Custom Request</title>
+      </Helmet>
       <h1 className="font-bold text-xl">Custom Request Form</h1>
       <form className="mt-4 w-96" onSubmit={handleCustomRequest}>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">

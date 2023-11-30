@@ -2,6 +2,7 @@ import useAssets from "../../hooks/useAssets";
 import useSecureAxios from '../../hooks/useSecureAxios';
 import Swal from "sweetalert2";
 import { NavLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AllAssetList = () => {
   // isAssetsLoading,
@@ -25,6 +26,10 @@ const AllAssetList = () => {
 
   return (
     <div className="mt-4 flex flex-col gap-5 items-center max-w-xl mx-auto">
+      <Helmet>
+        <title>AssetIT | All Assets</title>
+      </Helmet>
+
       <h1 className="font-bold text-center text-2xl">All Asset List</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-5">

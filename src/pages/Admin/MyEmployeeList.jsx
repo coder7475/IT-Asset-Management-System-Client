@@ -3,6 +3,7 @@ import useAdmin from '../../hooks/useAdmin';
 import useUsers from '../../hooks/useUsers';
 import useSecureAxios from '../../hooks/useSecureAxios';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const MyEmployeeList = () => {
   const [ adminData ] = useAdmin();
@@ -36,6 +37,9 @@ const MyEmployeeList = () => {
 
   return (
     <div className="mt-4 flex flex-col gap-5 items-center">
+      <Helmet>
+        <title>AssetIT | MY Employees</title>
+      </Helmet>
       <h1 className="font-bold text-center text-xl">My Employee List</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
         {members.map((empl) => (

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useSecureAxios from "../../hooks/useSecureAxios";
 import useAdmin from "../../hooks/useAdmin";
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet-async';
 
 const CustomRequestList = () => {
   const axiosSecure = useSecureAxios();
@@ -67,6 +68,9 @@ const CustomRequestList = () => {
   
   return (
     <div className="mt-4 flex flex-col gap-5 items-center mb-4">
+      <Helmet>
+        <title>AssetIT | All Custom Requests</title>
+      </Helmet>
       <h1 className="font-bold text-center text-xl">Custom Request List</h1>
      
       <div className="grid grid-cols-1 gap-2 mt-5">

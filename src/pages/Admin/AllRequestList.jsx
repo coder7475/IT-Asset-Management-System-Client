@@ -3,6 +3,7 @@ import useSecureAxios from "../../hooks/useSecureAxios";
 import useAdmin from "../../hooks/useAdmin";
 import Swal from "sweetalert2";
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const AllRequestList = () => {
   const axiosSecure = useSecureAxios();
@@ -62,6 +63,9 @@ const AllRequestList = () => {
 
   return (
     <div className="mt-4 flex flex-col gap-5 items-center">
+      <Helmet>
+        <title>AssetIT | All Requests</title>
+      </Helmet>
       <h1 className="font-bold text-center text-xl">All Request List</h1>
       <form onSubmit={handleSearch}>
           <input type="text" name="title" className="rounded-l-xl h-12 px-2 border-2" placeholder="Search"/>

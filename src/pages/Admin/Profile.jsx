@@ -1,6 +1,7 @@
 import useAdmin from "../../hooks/useAdmin";
 import useSecureAxios from "../../hooks/useSecureAxios";
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
   const [adminData] = useAdmin();
@@ -34,6 +35,9 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col justify-start text-xl items-center  min-h-screen">
+      <Helmet>
+        <title>AssetIT | Profile</title>
+      </Helmet>
       <h1 className="text-3xl font-bold mt-4">Profile Page</h1>
       <form
         className="mt-5 flex flex-col gap-3 justify-center items-start p-4  w-96 rounded-lg border-2"

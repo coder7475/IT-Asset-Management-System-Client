@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import useSecureAxios from './../../hooks/useSecureAxios';
 import useAdmin from '../../hooks/useAdmin';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateAnAsset = () => {
   const assetId = useParams();
@@ -60,6 +61,9 @@ const UpdateAnAsset = () => {
 
   return (
     <div className=" flex flex-col items-center">
+      <Helmet>
+        <title>AssetIT | Asset Update</title>
+      </Helmet>
       <form className="mt-10"  onSubmit={handleUpdateAsset}>
       <h1 className="font-bold text-3xl mb-4 justify-center">Update Asset</h1>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
