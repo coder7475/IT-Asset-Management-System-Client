@@ -6,6 +6,17 @@ import CustomModal from "../../components/General/CustomModal";
 
 const EmpHome = () => {
   let [isOpen, setIsOpen] = useState(false);
+  let [isEditable, setIsEditable] = useState(false);
+  const [adminData, isadminHomeLoading] = useAdmin();
+  const [employeeHomeData, isEmployeeHomeLoading] = useEmpHome();
+
+  function hadleUpdateButton() {
+    setIsEditable(true);
+  }
+
+  function handleCancelButton() {
+    setIsEditable(false);
+  }
 
   function closeModal() {
     setIsOpen(false);
@@ -14,11 +25,9 @@ const EmpHome = () => {
   function openModal() {
     setIsOpen(true);
   }
-  const [adminData, isadminHomeLoading] = useAdmin();
-  const [employeeHomeData, isEmployeeHomeLoading] = useEmpHome();
 
   // console.log(adminData);
-  console.log(employeeHomeData.customRequests[0]);
+  // console.log(employeeHomeData?.customRequests[0]);
 
   if (isadminHomeLoading || isEmployeeHomeLoading) {
     return <span>Loading....</span>;
@@ -74,7 +83,7 @@ const EmpHome = () => {
                 View Details
               </button>
               {isOpen ? (
-                <CustomModal closeModal={closeModal} isOpen={isOpen} cusReq={employeeHomeData?.customRequests[0]}/>
+                <CustomModal isEditable={isEditable} handleCancelButton={handleCancelButton} hadleUpdateButton={hadleUpdateButton} closeModal={closeModal} isOpen={isOpen} cusReq={employeeHomeData?.customRequests[0]}/>
               ) : (
                 ""
               )}

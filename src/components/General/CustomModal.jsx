@@ -2,11 +2,19 @@ import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function CustomModal({ closeModal, isOpen, cusReq }) {
+export default function CustomModal({
+  closeModal,
+  isOpen,
+  cusReq,
+  isEditable,
+  handleCancelButton,
+  hadleUpdateButton,
+}) {
+  console.log(isEditable);
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-10" onClose={() => null}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -38,61 +46,202 @@ export default function CustomModal({ closeModal, isOpen, cusReq }) {
                     Custom Request Details
                   </Dialog.Title>
                   <div className="mt-2">
-                      <img src={cusReq?.image} alt="custom request image" className="w-full h-64"/>
-                    
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Asset Name:</span>{" "}
-                      {cusReq?.name}
-                    </h1>
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Price: </span>{" "} $
-                      {cusReq?.price}
-                    </h1>
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Asset Type:</span>{" "}
-                      {cusReq?.type}
-                    </h1>
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Why Needed:</span>{" "}
-                      {cusReq?.needed}
-                    </h1>
+                    <form className="flex flex-col gap-3">
+                      {isEditable ? (
+                        <>
+                          <label htmlFor="image" className="font-semibold">
+                            Image URL:{" "}
+                          </label>
+                          <input
+                            type="text"
+                            name="image"
+                            id="image"
+                            className="pl-2 border-2 border-blue-500 rounded-lg"
+                            defaultValue={cusReq?.image}
+                          />
+                        </>
+                      ) : (
+                        <img
+                          src={cusReq?.image}
+                          alt="custom request image"
+                          className="w-full h-64"
+                        />
+                      )}
 
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Additional Info:</span>{" "}
-                      {cusReq?.addInfo}
-                    </h1>
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">Asset Name:</span>{" "}
+                        {isEditable ? (
+                          <>
+                            <input
+                              type="text"
+                              name="name"
+                              id="name"
+                              defaultValue={cusReq?.name}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            />
+                          </>
+                        ) : (
+                          cusReq?.name
+                        )}
+                      </h1>
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">Price: </span>
+                        {isEditable ? (
+                          <>
+                            <input
+                              type="number"
+                              name="name"
+                              id="name"
+                              defaultValue={cusReq?.price}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            />
+                          </>
+                        ) : (
+                          "$" + cusReq?.price
+                        )}
+                      </h1>
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">Asset Type:</span>{" "}
+                        {isEditable ? (
+                          <>
+                            <select
+                              name="type"
+                              id="type"
+                              defaultValue={cusReq?.type}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            >
+                              <option value="returnable">returnable</option>
+                              <option value="non-returnable">
+                                non-returnable
+                              </option>
+                            </select>
+                          </>
+                        ) : (
+                          cusReq?.type
+                        )}
+                      </h1>
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">Why Needed:</span>{" "}
+                        {isEditable ? (
+                          <>
+                            <input
+                              type="text"
+                              name="needed"
+                              id="needed"
+                              defaultValue={cusReq?.needed}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            />
+                          </>
+                        ) : (
+                          cusReq?.needed
+                        )}
+                      </h1>
 
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Request Date:</span>{" "}
-                      {cusReq?.date.split("T")[0]}
-                    </h1>
-                    <h1>
-                      {" "}
-                      <span className="font-semibold">Status:</span>{" "}
-                      {cusReq?.status}
-                    </h1>
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">
+                          Additional Info:
+                        </span>{" "}
+                        {isEditable ? (
+                          <>
+                            <input
+                              type="text"
+                              name="addInfo"
+                              id="addInfo"
+                              defaultValue={cusReq?.addInfo}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            />
+                          </>
+                        ) : (
+                          cusReq?.addInfo
+                        )}
+                      </h1>
+
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">
+                          Request Date:
+                        </span>{" "}
+                        {isEditable ? (
+                          <>
+                            <input
+                              type="date"
+                              name="date"
+                              id="date"
+                              defaultValue={cusReq?.date.split("T")[0]}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            />
+                          </>
+                        ) :
+                        cusReq?.date.split("T")[0]
+                        }
+                      </h1>
+                      <h1>
+                        {" "}
+                        <span className="font-semibold">Status:</span>{" "}
+                        {isEditable ? (
+                          <>
+                            <>
+                            <select
+                              name="status"
+                              id="status"
+                              defaultValue={cusReq?.status}
+                              className="px-1 border-2 border-blue-500 rounded-xl"
+                            >
+                              <option value="pending">pending</option>
+                              <option value="approved">approved</option>
+                              <option value="rejected">rejected</option>
+                            
+                            </select>
+                          </>
+                          </>
+                        ) : (
+                          cusReq?.status
+                        )}
+                      </h1>
+                    </form>
                   </div>
 
                   <div className="mt-4 flex gap-3">
-                  <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    >
-                      Update
-                    </button>
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
-                    >
-                      Close!
-                    </button>
+                    {isEditable ? (
+                      <>
+                        <button
+                          type="button"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          // onClick={hadleSave}
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          onClick={handleCancelButton}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          onClick={hadleUpdateButton}
+                        >
+                          Update
+                        </button>
+                        <button
+                          type="button"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          onClick={closeModal}
+                        >
+                          Close!
+                        </button>
+                      </>
+                    )}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
