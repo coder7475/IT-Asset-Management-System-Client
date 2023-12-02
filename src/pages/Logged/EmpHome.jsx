@@ -83,7 +83,14 @@ const EmpHome = () => {
                 View Details
               </button>
               {isOpen ? (
-                <CustomModal isEditable={isEditable} handleCancelButton={handleCancelButton} hadleUpdateButton={hadleUpdateButton} closeModal={closeModal} isOpen={isOpen} cusReq={employeeHomeData?.customRequests[0]}/>
+                <CustomModal
+                  isEditable={isEditable}
+                  handleCancelButton={handleCancelButton}
+                  hadleUpdateButton={hadleUpdateButton}
+                  closeModal={closeModal}
+                  isOpen={isOpen}
+                  cusReq={employeeHomeData?.customRequests[0]}
+                />
               ) : (
                 ""
               )}

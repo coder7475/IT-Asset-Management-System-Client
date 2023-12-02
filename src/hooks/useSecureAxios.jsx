@@ -29,7 +29,7 @@ const useSecureAxios = () => {
     },
     (error) => {
       // console.log('error tracked in the interceptor', error.response)
-      if (error.response.status === 401 || error.response.status === 403)
+      if (error?.response?.status === 401 || error?.response?.status === 403)
       {      
         logOut();
         return redirect("/login");

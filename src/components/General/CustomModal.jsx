@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import useSecureAxios from '../../hooks/useSecureAxios';
+import Swal from "sweetalert2";
 
 export default function CustomModal({
   closeModal,
@@ -10,7 +12,42 @@ export default function CustomModal({
   handleCancelButton,
   hadleUpdateButton,
 }) {
-  console.log(isEditable);
+  // console.log(isEditable);
+  const axiosSecure = useSecureAxios();
+  const handleSave = (e) => {
+    e.preventDefault();
+    // console.log("clicked");
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const price = form.get("price");
+    const type = form.get("type");
+    const image = form.get("image");
+    const needed = form.get("needed");
+    const addInfo = form.get("addInfo");
+    const d = new Date();
+    const updatedDate = d.toISOString();
+
+    const newDoc = {
+      image,
+      name,
+      price, 
+      type,
+      needed,
+      addInfo,
+      updatedDate
+    }
+    // console.log(newDoc);
+    axiosSecure.patch(`/user/updateCustomRequest/${cusReq?.requesterEmail}?date=${cusReq?.date}`, newDoc)
+      .then(() => {
+        // console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Successfully Updated!",
+        });
+      })
+  }
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -46,7 +83,7 @@ export default function CustomModal({
                     Custom Request Details
                   </Dialog.Title>
                   <div className="mt-2">
-                    <form className="flex flex-col gap-3">
+                    <form className="flex flex-col gap-3" onSubmit={handleSave}>
                       {isEditable ? (
                         <>
                           <label htmlFor="image" className="font-semibold">
@@ -92,8 +129,8 @@ export default function CustomModal({
                           <>
                             <input
                               type="number"
-                              name="name"
-                              id="name"
+                              name="price"
+                              id="price"
                               defaultValue={cusReq?.price}
                               className="px-1 border-2 border-blue-500 rounded-xl"
                             />
@@ -166,64 +203,37 @@ export default function CustomModal({
                         <span className="font-semibold">
                           Request Date:
                         </span>{" "}
-                        {isEditable ? (
-                          <>
-                            <input
-                              type="date"
-                              name="date"
-                              id="date"
-                              defaultValue={cusReq?.date.split("T")[0]}
-                              className="px-1 border-2 border-blue-500 rounded-xl"
-                            />
-                          </>
-                        ) :
-                        cusReq?.date.split("T")[0]
-                        }
+                        {cusReq?.date.split("T")[0]}
                       </h1>
                       <h1>
                         {" "}
                         <span className="font-semibold">Status:</span>{" "}
-                        {isEditable ? (
-                          <>
-                            <>
-                            <select
-                              name="status"
-                              id="status"
-                              defaultValue={cusReq?.status}
-                              className="px-1 border-2 border-blue-500 rounded-xl"
-                            >
-                              <option value="pending">pending</option>
-                              <option value="approved">approved</option>
-                              <option value="rejected">rejected</option>
-                            
-                            </select>
-                          </>
-                          </>
-                        ) : (
-                          cusReq?.status
-                        )}
+                        {cusReq?.status}
                       </h1>
+                      {isEditable && (
+                        <div className="mx-auto">
+                          <button
+                            type="submit"
+                            className="w-64 inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      )}
                     </form>
                   </div>
 
                   <div className="mt-4 flex gap-3">
                     {isEditable ? (
-                      <>
+                      <div className="mx-auto">
                         <button
                           type="button"
-                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                          // onClick={hadleSave}
-                        >
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          className="w-64 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                           onClick={handleCancelButton}
                         >
                           Cancel
                         </button>
-                      </>
+                      </div>
                     ) : (
                       <>
                         <button
@@ -255,6 +265,19 @@ export default function CustomModal({
 
 CustomModal.propTypes = {
   closeModal: PropTypes.any,
-  cusReq: PropTypes.any,
-  isOpen: PropTypes.any,
-};
+  cusReq: PropTypes.shape({
+    addInfo: PropTypes.any,
+    date: PropTypes.any,
+    image: PropTypes.any,
+    name: PropTypes.any,
+    needed: PropTypes.any,
+    price: PropTypes.any,
+    requesterEmail: PropTypes.any,
+    status: PropTypes.any,
+    type: PropTypes.any
+  }),
+  hadleUpdateButton: PropTypes.any,
+  handleCancelButton: PropTypes.any,
+  isEditable: PropTypes.any,
+  isOpen: PropTypes.any
+}
