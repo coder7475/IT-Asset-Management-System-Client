@@ -101,9 +101,9 @@ const EmpHome = () => {
       <h1 className="text-xl font-semibold text-center mt-5">
         My Pending Requests
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-2 mx-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-2 mx-2 mb-2">
         {
-          employeeHomeData?.pendingRequests.map((cusRequest) => (
+          employeeHomeData?.pendingRequests?.map((cusRequest) => (
             <div
               key={cusRequest._id}
               className="border-2 p-2 rounded-lg w text-center space-y-2 bg-gray-200"
@@ -129,6 +129,36 @@ const EmpHome = () => {
           ))}
       </div>
 
+      <h1 className="text-xl font-semibold text-center mt-5">
+        My Monthly Requests
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-2 mx-2 mb-2">
+        {
+          employeeHomeData?.monthlyRequests?.map((cusRequest) => (
+            <div
+              key={cusRequest._id}
+              className="border-2 p-2 rounded-lg w text-center space-y-2 bg-gray-200"
+            >
+              <h1>
+                {" "}
+                <span className="font-semibold">Asset Name:</span>{" "}
+                {cusRequest.name}
+              </h1>
+             
+              <h1>
+                {" "}
+                <span className="font-semibold">Type:</span> {cusRequest.type}
+              </h1>
+              <h1>
+                {" "}
+                <span className="font-semibold">Status:</span>{" "}
+                {cusRequest.status}
+              </h1>
+              
+              
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
