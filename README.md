@@ -15,21 +15,23 @@
 
 # Features
 
+- Responsive Design
+- Stripe Payment Integration
 - Authentication using Firebase
-- Sign Up as an admin
-- Sign Up as an employee
-- Registration and Login using email and password
-- Signin using Google 
+  - Sign Up as an admin
+  - Sign Up as an employee
+  - Registration and Login using email and password
+  - Signin using Google 
 - Show SweetAlert for successful or unsuccesful registration
 - Show profile pic and logout button upon login
 - A Error Page is shown for wrong route
-- Responsive Design
-- Asset Cretion By Admin
-- Admin can add employee to company team
-- Admin can approve or reject employee asset request 
-- Stripe Payment Integration
-- In admin Home page show all pending request, Top request item by employees, 
-  limited stock items, pie chart of asset types etc
+- Admin can
+  - create asset
+  - add employee to company team
+  - can approve or reject employee asset request 
+- Employee can
+  - request for assets
+  - make custom asset request
 
 ## Authors
 

@@ -27,7 +27,7 @@ const EmpHome = () => {
   }
 
   // console.log(adminData);
-  console.log(employeeHomeData);
+  // console.log(employeeHomeData);
 
   if (isadminHomeLoading || isEmployeeHomeLoading) {
     return <span>Loading....</span>;

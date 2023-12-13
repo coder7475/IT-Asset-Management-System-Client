@@ -101,7 +101,7 @@ const CheckoutForm = () => {
         // make all packages status paid
         const updatedPackages = adminData?.user?.package?.map((pack) => pack);
         updatedPackages?.forEach((pack) => (pack.value.status = "paid"));
-        console.log(updatedPackages);
+        // console.log(updatedPackages);
         axiosSecure
           .patch(`/users/admin/${user.email}`, updatedPackages)
           .then(() => {
