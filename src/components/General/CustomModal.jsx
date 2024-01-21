@@ -105,7 +105,7 @@ export default function CustomModal({
                         />
                       )}
 
-                      <h1>
+                      <h2>
                         {" "}
                         <span className="font-semibold">Asset Name:</span>{" "}
                         {isEditable ? (
@@ -121,8 +121,8 @@ export default function CustomModal({
                         ) : (
                           cusReq?.name
                         )}
-                      </h1>
-                      <h1>
+                      </h2>
+                      <h2>
                         {" "}
                         <span className="font-semibold">Price: </span>
                         {isEditable ? (
@@ -138,8 +138,8 @@ export default function CustomModal({
                         ) : (
                           "$" + cusReq?.price
                         )}
-                      </h1>
-                      <h1>
+                      </h2>
+                      <h2>
                         {" "}
                         <span className="font-semibold">Asset Type:</span>{" "}
                         {isEditable ? (
@@ -159,8 +159,8 @@ export default function CustomModal({
                         ) : (
                           cusReq?.type
                         )}
-                      </h1>
-                      <h1>
+                      </h2>
+                      <h2>
                         {" "}
                         <span className="font-semibold">Why Needed:</span>{" "}
                         {isEditable ? (
@@ -176,9 +176,9 @@ export default function CustomModal({
                         ) : (
                           cusReq?.needed
                         )}
-                      </h1>
+                      </h2>
 
-                      <h1>
+                      <h2>
                         {" "}
                         <span className="font-semibold">
                           Additional Info:
@@ -196,20 +196,20 @@ export default function CustomModal({
                         ) : (
                           cusReq?.addInfo
                         )}
-                      </h1>
+                      </h2>
 
-                      <h1>
+                      <h2>
                         {" "}
                         <span className="font-semibold">
                           Request Date:
                         </span>{" "}
                         {cusReq?.date.split("T")[0]}
-                      </h1>
-                      <h1>
+                      </h2>
+                      <h2>
                         {" "}
                         <span className="font-semibold">Status:</span>{" "}
                         {cusReq?.status}
-                      </h1>
+                      </h2>
                       {isEditable && (
                         <div className="mx-auto">
                           <button

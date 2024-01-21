@@ -75,8 +75,8 @@ const RequestForAnAsset = () => {
         <title>AssetIT | Request Asset</title>
       </Helmet>
 
-      <h1 className="font-bold text-center text-xl">Request For an Asset</h1>
-      <h1 className="font-medium text-lg text-center">All Assets</h1>
+      <h2 className="font-bold text-center text-xl">Request For an Asset</h2>
+      <h2 className="font-medium text-lg text-center">All Assets</h2>
 
       <form onSubmit={handleSearch} className="flex">
         <input
@@ -99,19 +99,19 @@ const RequestForAnAsset = () => {
             key={asset._id}
             className="border-2 p-2 rounded-lg flex flex-col space-y-2 bg-gray-200"
           >
-            <h1>
+            <h2>
               {" "}
               <span className="font-semibold">Name:</span> {asset.name}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Asset Type:</span> {asset.type}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Availibility:</span>{" "}
               {asset.availability ? "Available" : "Out of stock"}
-            </h1>
+            </h2>
             <button
               type="button"
               onClick={() => handleRequesAsset(asset)}

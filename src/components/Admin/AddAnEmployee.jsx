@@ -44,7 +44,7 @@ const AddAnEmployee = () => {
       <Helmet>
         <title>AssetIT | Add An Employee</title>
       </Helmet>
-      <h1 className="text-center text-2xl font-bold mt-4">Add an Employee</h1>
+      <h2 className="text-center text-2xl font-bold mt-4">Add an Employee</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
         {employees.map((empl) => (
           <div 
@@ -52,7 +52,7 @@ const AddAnEmployee = () => {
           key={empl._id} 
           className="border-2 p-2 rounded-lg text-center space-y-2 bg-gray-200"  >
             <img src={empl?.photoURL} alt="Employee Image"  className="w-full h-24"/>
-            <h1> <span className="font-semibold">Name:</span>  {empl.name}</h1>
+            <h2> <span className="font-semibold">Name:</span>  {empl.name}</h2>
             <button type="button" className="block bg-blue-500 text-white p-2 rounded-xl mx-auto" >
               Add to Team
             </button>

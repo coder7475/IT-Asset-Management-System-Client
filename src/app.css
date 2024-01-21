@@ -1,0 +1,17 @@
+.hero {
+    background-image: url('/quality-control.jpg');
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-size: cover;
+}
+/* Image by <a href="https://www.freepik.com/free-photo/standard-quality-control-concept-m_36027719.htm#query=it%20asset%20management&position=24&from_view=keyword&track=ais&uuid=1d200c33-8ae1-400a-907f-7bf6d3334449">Freepik</a> */
+
+.hero-bg {
+    background: rgba(255 247 251 / 70% );
+    color: black;
+    border: 1px solid fff;
+}
+
+.para {
+    color: rgb(82, 95, 126);
+}

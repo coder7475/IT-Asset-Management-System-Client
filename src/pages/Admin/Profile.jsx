@@ -38,7 +38,7 @@ const Profile = () => {
       <Helmet>
         <title>AssetIT | Profile</title>
       </Helmet>
-      <h1 className="text-3xl font-bold mt-4">Profile Page</h1>
+      <h2 className="text-3xl font-bold mt-4">Profile Page</h2>
       <form
         className="mt-5 flex flex-col gap-3 justify-center items-start p-4  w-96 rounded-lg border-2"
         onSubmit={handleProfileUpdate}

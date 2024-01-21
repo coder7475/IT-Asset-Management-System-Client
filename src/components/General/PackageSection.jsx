@@ -4,9 +4,9 @@ const PackageSection = () => {
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
+          <h2 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
             Packages
-          </h1>
+          </h2>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">
             Choose one of the three packages.
           </p>
@@ -17,12 +17,12 @@ const PackageSection = () => {
               <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                 Pro
               </h2>
-              <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+              <h2 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                 <span>$5</span>
                 <span className="text-lg ml-1 font-normal text-gray-500">
                   /mo
                 </span>
-              </h1>
+              </h2>
               <p className="flex items-center text-gray-600 mb-2">
                 <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                   <svg
@@ -67,7 +67,7 @@ const PackageSection = () => {
                     className="w-4 h-4 ml-auto"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    <path d="M5 12h24M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
               </NavLink>
@@ -82,12 +82,12 @@ const PackageSection = () => {
               <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                 Business
               </h2>
-              <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+              <h2 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                 <span>$8</span>
                 <span className="text-lg ml-1 font-normal text-gray-500">
                   /mo
                 </span>
-              </h1>
+              </h2>
               <p className="flex items-center text-gray-600 mb-2">
                 <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                   <svg
@@ -132,7 +132,7 @@ const PackageSection = () => {
                     className="w-4 h-4 ml-auto"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    <path d="M5 12h24M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
               </NavLink>
@@ -144,12 +144,12 @@ const PackageSection = () => {
               <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                 Special
               </h2>
-              <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+              <h2 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                 <span>$15</span>
                 <span className="text-lg ml-1 font-normal text-gray-500">
                   /mo
                 </span>
-              </h1>
+              </h2>
               <p className="flex items-center text-gray-600 mb-2">
                 <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                   <svg
@@ -194,7 +194,7 @@ const PackageSection = () => {
                     className="w-4 h-4 ml-auto"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    <path d="M5 12h24M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
               </NavLink>

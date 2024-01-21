@@ -30,7 +30,7 @@ const AllAssetList = () => {
         <title>AssetIT | All Assets</title>
       </Helmet>
 
-      <h1 className="font-bold text-center text-2xl">All Asset List</h1>
+      <h2 className="font-bold text-center text-2xl">All Asset List</h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-5">
         {allAssets.map((empl) => (
@@ -38,22 +38,22 @@ const AllAssetList = () => {
             key={empl._id}
             className="border-2 p-2 rounded-lg text-center space-y-2 bg-gray-200"
           >
-            <h1>
+            <h2>
               {" "}
               <span className="font-semibold">Product Name:</span> {empl.name}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Product Type:</span> {empl.type}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Product Type:</span> {empl.quantity}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Date Added:</span> {empl.added.split("T")[0]}
-            </h1>
+            </h2>
             <div className="flex  gap-4 justify-center">
               <NavLink to={`/dashboard/assetList/${empl._id}`}>
 

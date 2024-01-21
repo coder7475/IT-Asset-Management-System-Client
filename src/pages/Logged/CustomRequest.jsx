@@ -56,7 +56,7 @@ const CustomRequest = () => {
       <Helmet>
         <title>AssetIT | Make Custom Request</title>
       </Helmet>
-      <h1 className="font-bold text-xl">Custom Request Form</h1>
+      <h2 className="font-bold text-xl">Custom Request Form</h2>
       <form className="mt-4" onSubmit={handleCustomRequest}>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Asset Name

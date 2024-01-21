@@ -66,7 +66,7 @@ const AllRequestList = () => {
       <Helmet>
         <title>AssetIT | All Requests</title>
       </Helmet>
-      <h1 className="font-bold text-center text-xl">All Request List</h1>
+      <h2 className="font-bold text-center text-xl">All Request List</h2>
       <form onSubmit={handleSearch}>
           <input type="text" name="title" className="rounded-l-xl h-12 px-2 border-2" placeholder="Search"/>
           <button type="submit" className="rounded-r-xl h-12 px-2 bg-blue-500 text-white">Search</button>
@@ -77,38 +77,38 @@ const AllRequestList = () => {
             key={empl._id}
             className="border-2 p-2 rounded-lg text-center space-y-2 bg-gray-200"
           >
-            <h1>
+            <h2>
               {" "}
               <span className="font-semibold">Asset Name:</span> {empl.name}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Asset Type:</span> {empl.type}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Email Of Requester:</span>{" "}
               {empl.requesterEmail}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Name Of Requester:</span>{" "}
               {empl.requesterName}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Request Date:</span>{" "}
               {empl.requestDate.split("T")[0]}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Additional Note:</span>{" "}
               {empl.additionalNotes}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Status:</span> {empl.status}
-            </h1>
+            </h2>
             <div className="flex  gap-4 justify-center">
               <button
                 onClick={() => handleApproveRequest(empl)}

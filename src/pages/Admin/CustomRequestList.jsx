@@ -71,7 +71,7 @@ const CustomRequestList = () => {
       <Helmet>
         <title>AssetIT | All Custom Requests</title>
       </Helmet>
-      <h1 className="font-bold text-center text-xl">Custom Request List</h1>
+      <h2 className="font-bold text-center text-xl">Custom Request List</h2>
      
       <div className="grid grid-cols-1 gap-2 mt-5">
         {allCustomRequests.map((empl) => (
@@ -82,33 +82,33 @@ const CustomRequestList = () => {
             <figure>
               <img src={empl.image} alt="" className="w-64"/> 
             </figure>
-            <h1>
+            <h2>
               {" "}
               <span className="font-semibold">Asset Name:</span> {empl.name}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Asset Type:</span> {empl.type}
-            </h1>
+            </h2>
             
-            <h1>
+            <h2>
               {" "}
               <span className="font-semibold">Price:</span> ${empl.price}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Why You Need This:</span>{" "}
               {empl.needed}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Additional Information:</span>{" "}
               {empl.addInfo}
-            </h1>
-            <h1>
+            </h2>
+            <h2>
               {" "}
               <span className="font-semibold">Status:</span> {empl.status}
-            </h1>
+            </h2>
             <div className="flex  gap-4 justify-center">
               <button
                 onClick={() => handleApproveRequest(empl)}

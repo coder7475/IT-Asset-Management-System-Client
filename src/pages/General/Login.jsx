@@ -59,9 +59,9 @@ const Login = () => {
       </Helmet>
       <GeneralNavbar />
       <div className=" mt-10 px-2 flex flex-col md:w-1/2 mx-auto gap-2 min-h-screen">
-        <h1 className="text-center text-xl md:text-3xl font-medium md:font-bold">
+        <h2 className="text-center text-xl md:text-3xl font-medium md:font-bold">
           Login
-        </h1>
+        </h2>
         <SocialLogin />
         <Divider>Or</Divider>
         <form className="flex flex-col" onSubmit={formik.handleSubmit}>

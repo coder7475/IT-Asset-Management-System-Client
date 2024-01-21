@@ -48,7 +48,7 @@ const AddAnAsset = () => {
         <title>AssetIT | Add An Asset</title>
       </Helmet>
       <form className="mt-10" onSubmit={handleAddAsset} >
-      <h1 className="font-bold text-xl justify-center">Add a new Asset to the Company</h1>
+      <h2 className="font-bold text-xl justify-center">Add a new Asset to the Company</h2>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Product Name
         </label>

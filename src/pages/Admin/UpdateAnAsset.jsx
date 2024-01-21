@@ -65,7 +65,7 @@ const UpdateAnAsset = () => {
         <title>AssetIT | Asset Update</title>
       </Helmet>
       <form className="mt-10"  onSubmit={handleUpdateAsset}>
-      <h1 className="font-bold text-3xl mb-4 justify-center">Update Asset</h1>
+      <h2 className="font-bold text-3xl mb-4 justify-center">Update Asset</h2>
         <label htmlFor="name" className="block mb-2 text-lg font-medium">
           Product Name
         </label>

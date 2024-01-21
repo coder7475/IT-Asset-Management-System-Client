@@ -66,11 +66,11 @@ const router = Router([
       },
       {
         path: "myTeam",
-        element: <h1>my team</h1>
+        element: <h2>my team</h2>
       },
       {
         path: "myAssets",
-        element: <h1>my asset</h1>
+        element: <h2>my asset</h2>
       },
       {
         path: "customRequest",
