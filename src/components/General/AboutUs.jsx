@@ -18,6 +18,7 @@ const AboutUs = () => {
             // className="object-cover object-center rounded"
             alt="hero"
             src="/aboutUS.jpg"
+            loading="lazy"
           />
         </div>
       </div>

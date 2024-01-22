@@ -6,14 +6,20 @@ import Footer from "../../components/General/Footer";
 import { Helmet } from "react-helmet-async";
 import Hero from "../../components/General/Hero";
 
+function WebpageTitle() {
+  return (
+    <Helmet>
+      <title>AssetIT | Home</title>
+    </Helmet>
+  );
+}
+
 const Homepage = () => {
   return (
     <div>
-      <Helmet>
-        <title>AssetIT | Home</title>
-      </Helmet>
+      <WebpageTitle></WebpageTitle>
       <GeneralNavbar />
-      <Hero/>
+      <Hero />
       <Banner />
       <AboutUs />
       <PackageSection />
